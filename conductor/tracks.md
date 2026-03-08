@@ -11,4 +11,6 @@
 
 | [x] | home-screen_20260308 | Tela Inicial (Home) | 2026-03-08 | 2026-03-08 |
 
+| [x] | ptbr-polish_20260308 | Revisão PT-BR e Layout da Home | 2026-03-08 | 2026-03-08 |
+
 <!-- Tracks registered by /conductor:new-track -->
