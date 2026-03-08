@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
 type Nominee = { id: string; name: string; movie: string };
@@ -26,6 +26,20 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const router = useRouter();
 
+  const totalCategories = useMemo(
+    () => categoriesByTier.reduce((sum, g) => sum + g.categories.length, 0),
+    [categoriesByTier],
+  );
+
+  const filledCount = useMemo(
+    () => categoriesByTier.reduce((sum, g) => sum + g.categories.filter((c) => bets[c.id]).length, 0),
+    [categoriesByTier, bets],
+  );
+
+  const isFirstTime = Object.keys(initialBets).length === 0;
+
+  const isSaveDisabled = saving || (isFirstTime && filledCount < totalCategories);
+
   function handleSelect(categoryId: string, nomineeId: string) {
     setBets((prev) => ({ ...prev, [categoryId]: nomineeId }));
   }
@@ -49,7 +63,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
 
       if (!res.ok) throw new Error("Erro ao salvar");
       setStatus("success");
-      router.refresh();
+      router.push(`/pools/${poolId}`);
     } catch {
       setStatus("error");
     } finally {
@@ -59,6 +73,15 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="sticky top-0 z-10 mb-6 flex items-center justify-between rounded-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
+        <span className="text-sm text-oscar-text-secondary">
+          {filledCount} / {totalCategories} categorias preenchidas
+        </span>
+        <button type="submit" className="admin-btn-primary" disabled={isSaveDisabled}>
+          {saving ? "Salvando..." : "Salvar"}
+        </button>
+      </div>
+
       {categoriesByTier.map(({ tier, label, points, categories }) => (
         <section key={tier} className="mb-8">
           <div className="mb-3 flex items-center gap-2">
@@ -107,23 +130,11 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
         </section>
       ))}
 
-      {status === "success" && (
-        <div className="mb-4 rounded-md bg-green-50 px-4 py-3 text-sm text-green-800">
-          Palpites salvos com sucesso!
-        </div>
-      )}
-
       {status === "error" && (
         <div className="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-800">
           Erro ao salvar palpites. Tente novamente.
         </div>
       )}
-
-      <div className="flex justify-end">
-        <button type="submit" className="admin-btn-primary" disabled={saving}>
-          {saving ? "Salvando..." : "Salvar Palpites"}
-        </button>
-      </div>
     </form>
   );
 }
