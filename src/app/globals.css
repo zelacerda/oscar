@@ -60,7 +60,106 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--oscar-surface);
+  color: var(--oscar-text-primary);
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Admin base component styles */
+.admin-heading {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--oscar-charcoal);
+}
+
+.admin-card {
+  background: var(--oscar-surface-elevated);
+  border: 1px solid var(--oscar-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.admin-btn-primary {
+  background: var(--oscar-gold);
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.admin-btn-primary:hover {
+  background: var(--oscar-gold-dark);
+}
+
+.admin-btn-secondary {
+  background: transparent;
+  color: var(--oscar-text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--oscar-border);
+  font-size: 0.875rem;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.admin-btn-secondary:hover {
+  background: var(--oscar-surface);
+  border-color: var(--oscar-text-muted);
+}
+
+.admin-input {
+  width: 100%;
+  border: 1px solid var(--oscar-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--oscar-text-primary);
+  background: var(--oscar-surface-elevated);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--oscar-gold);
+  box-shadow: 0 0 0 3px var(--oscar-border-gold);
+}
+
+.admin-table {
+  width: 100%;
+  background: var(--oscar-surface-elevated);
+  border: 1px solid var(--oscar-border);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.admin-table thead {
+  background: var(--oscar-gold-subtle);
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--oscar-gold-dark);
+}
+
+.admin-table td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--oscar-text-primary);
+  border-top: 1px solid var(--oscar-border);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--oscar-gold-subtle);
 }
