@@ -3,6 +3,32 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Oscar Theme - Paleta de cores */
+  --oscar-gold: #C5A047;
+  --oscar-gold-light: #D4B86A;
+  --oscar-gold-dark: #A6852F;
+  --oscar-gold-subtle: #F5EDD6;
+
+  --oscar-black: #0D0D0D;
+  --oscar-charcoal: #1A1A2E;
+  --oscar-dark: #16213E;
+  --oscar-dark-accent: #1F2B47;
+
+  --oscar-surface: #F8F6F1;
+  --oscar-surface-elevated: #FFFFFF;
+  --oscar-border: #E5E0D5;
+  --oscar-border-gold: #C5A04733;
+
+  --oscar-text-primary: #1A1A2E;
+  --oscar-text-secondary: #5A5A6E;
+  --oscar-text-muted: #8A8A9A;
+  --oscar-text-on-dark: #F0ECE3;
+
+  --oscar-danger: #D94F4F;
+  --oscar-danger-light: #FDEAEA;
+  --oscar-success: #4CAF50;
+  --oscar-success-light: #E8F5E9;
 }
 
 @theme inline {
@@ -10,13 +36,27 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-oscar-gold: var(--oscar-gold);
+  --color-oscar-gold-light: var(--oscar-gold-light);
+  --color-oscar-gold-dark: var(--oscar-gold-dark);
+  --color-oscar-gold-subtle: var(--oscar-gold-subtle);
+  --color-oscar-black: var(--oscar-black);
+  --color-oscar-charcoal: var(--oscar-charcoal);
+  --color-oscar-dark: var(--oscar-dark);
+  --color-oscar-dark-accent: var(--oscar-dark-accent);
+  --color-oscar-surface: var(--oscar-surface);
+  --color-oscar-surface-elevated: var(--oscar-surface-elevated);
+  --color-oscar-border: var(--oscar-border);
+  --color-oscar-border-gold: var(--oscar-border-gold);
+  --color-oscar-text-primary: var(--oscar-text-primary);
+  --color-oscar-text-secondary: var(--oscar-text-secondary);
+  --color-oscar-text-muted: var(--oscar-text-muted);
+  --color-oscar-text-on-dark: var(--oscar-text-on-dark);
+  --color-oscar-danger: var(--oscar-danger);
+  --color-oscar-danger-light: var(--oscar-danger-light);
+  --color-oscar-success: var(--oscar-success);
+  --color-oscar-success-light: var(--oscar-success-light);
 }
 
 body {
