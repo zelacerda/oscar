@@ -28,7 +28,6 @@ export async function PUT(request: NextRequest, { params }: Params) {
     data: {
       name: body.name,
       movie: body.movie,
-      year: body.year,
       categoryId: body.categoryId,
     },
   });
