@@ -43,7 +43,7 @@ export default async function RankingPage({ params }: Props) {
         <p className="mt-1 text-sm text-oscar-text-secondary">{pool.name}</p>
       </div>
 
-      <RankingTable poolId={id} currentUserId={userId} />
+      <RankingTable poolId={id} currentUserId={userId ?? ""} />
     </main>
   );
 }
