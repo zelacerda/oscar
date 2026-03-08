@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -11,4 +5,116 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Tier {
+  GOLD
+  SILVER
+  BRONZE
+  BASE
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  adminPools  Pool[]
+  poolMembers PoolMember[]
+}
+
+model Pool {
+  id         String   @id @default(cuid())
+  name       String
+  inviteCode String   @unique @default(cuid())
+  year       Int
+  lockDate   DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  adminId String
+  admin   User   @relation(fields: [adminId], references: [id])
+
+  members PoolMember[]
+}
+
+model PoolMember {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  poolId String
+  pool   Pool   @relation(fields: [poolId], references: [id], onDelete: Cascade)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  bets Bet[]
+
+  @@unique([poolId, userId])
+}
+
+model Category {
+  id   String @id @default(cuid())
+  name String
+  tier Tier
+  year Int
+
+  nominees Nominee[]
+  bets     Bet[]
+  result   Result?
+
+  @@unique([name, year])
+}
+
+model Nominee {
+  id    String @id @default(cuid())
+  name  String
+  movie String
+  year  Int
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  bets   Bet[]
+  result Result?
+}
+
+model Bet {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  poolMemberId String
+  poolMember   PoolMember @relation(fields: [poolMemberId], references: [id], onDelete: Cascade)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  nomineeId String
+  nominee   Nominee @relation(fields: [nomineeId], references: [id])
+
+  @@unique([poolMemberId, categoryId])
+}
+
+model Result {
+  id        String   @id @default(cuid())
+  year      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categoryId String   @unique
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  winnerNomineeId String  @unique
+  winnerNominee   Nominee @relation(fields: [winnerNomineeId], references: [id])
 }
