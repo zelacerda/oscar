@@ -2,15 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const entities = [
-  { name: "Galera", icon: "👥", href: "/admin/users" },
-  { name: "Bolões", icon: "🎲", href: "/admin/pools" },
-  { name: "Membros", icon: "🤝", href: "/admin/pool-members" },
-  { name: "Categorias", icon: "🏆", href: "/admin/categories" },
-  { name: "Indicados", icon: "🎬", href: "/admin/nominees" },
-  { name: "Apostas", icon: "🎯", href: "/admin/bets" },
-  { name: "Resultados", icon: "⭐", href: "/admin/results" },
+  { name: "Galera", icon: "👥", href: "/admin/users", api: "/api/users" },
+  { name: "Bolões", icon: "🎲", href: "/admin/pools", api: "/api/pools" },
+  { name: "Membros", icon: "🤝", href: "/admin/pool-members", api: "/api/pool-members" },
+  { name: "Categorias", icon: "🏆", href: "/admin/categories", api: "/api/categories" },
+  { name: "Indicados", icon: "🎬", href: "/admin/nominees", api: "/api/nominees" },
+  { name: "Apostas", icon: "🎯", href: "/admin/bets", api: "/api/bets" },
+  { name: "Resultados", icon: "⭐", href: "/admin/results", api: "/api/results" },
 ];
 
 export default function AdminLayout({
@@ -19,6 +20,18 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [counts, setCounts] = useState<Record<string, number | null>>({});
+
+  useEffect(() => {
+    entities.forEach((entity) => {
+      fetch(entity.api)
+        .then((res) => res.json())
+        .then((data: unknown[]) => {
+          setCounts((prev) => ({ ...prev, [entity.api]: data.length }));
+        })
+        .catch(() => {});
+    });
+  }, []);
 
   return (
     <div className="flex min-h-screen">
@@ -42,6 +55,7 @@ export default function AdminLayout({
         <nav className="flex-1 p-3 space-y-1">
           {entities.map((entity) => {
             const isActive = pathname.startsWith(entity.href);
+            const count = counts[entity.api];
             return (
               <Link
                 key={entity.href}
@@ -53,7 +67,18 @@ export default function AdminLayout({
                 }`}
               >
                 <span className="text-base">{entity.icon}</span>
-                {entity.name}
+                <span className="flex-1">{entity.name}</span>
+                {count != null && (
+                  <span
+                    className={`text-xs px-1.5 py-0.5 rounded-full ${
+                      isActive
+                        ? "bg-oscar-gold/25 text-oscar-gold"
+                        : "bg-oscar-dark-accent text-oscar-text-on-dark/50"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                )}
               </Link>
             );
           })}

@@ -15,6 +15,41 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
   return String(value ?? "—");
 }
 
+const tierStyles: Record<string, string> = {
+  GOLD: "bg-yellow-100 text-yellow-800 border-yellow-300",
+  SILVER: "bg-gray-100 text-gray-700 border-gray-300",
+  BRONZE: "bg-orange-100 text-orange-800 border-orange-300",
+  BASE: "bg-slate-100 text-slate-600 border-slate-300",
+};
+
+const tierLabels: Record<string, string> = {
+  GOLD: "Ouro",
+  SILVER: "Prata",
+  BRONZE: "Bronze",
+  BASE: "Base",
+};
+
+function renderCellValue(col: string, rawValue: string): React.ReactNode {
+  if (col === "tier" && tierStyles[rawValue]) {
+    return (
+      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold border ${tierStyles[rawValue]}`}>
+        {tierLabels[rawValue]}
+      </span>
+    );
+  }
+  if (col === "role") {
+    const isAdmin = rawValue === "ADMIN";
+    return (
+      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold border ${
+        isAdmin ? "bg-oscar-gold-subtle text-oscar-gold-dark border-oscar-gold-light" : "bg-slate-100 text-slate-600 border-slate-300"
+      }`}>
+        {isAdmin ? "Admin" : "Participante"}
+      </span>
+    );
+  }
+  return rawValue;
+}
+
 function buildLabel(item: Record<string, unknown>, labelField: string | string[]): string {
   const fields = Array.isArray(labelField) ? labelField : [labelField];
   return fields.map((f) => getNestedValue(item, f)).join(" — ");
@@ -294,9 +329,15 @@ export default function EntityPage({
       <p className="text-oscar-text-secondary text-sm mb-6">{config.description}</p>
 
       {loading ? (
-        <p className="text-oscar-text-muted">Carregando...</p>
+        <div className="admin-card p-12 text-center">
+          <p className="text-oscar-text-muted">Carregando...</p>
+        </div>
       ) : items.length === 0 ? (
-        <p className="text-oscar-text-muted">Nenhum registro encontrado.</p>
+        <div className="admin-card p-12 text-center">
+          <p className="text-4xl mb-3">🎬</p>
+          <p className="text-oscar-text-secondary font-medium mb-1">Nada por aqui ainda!</p>
+          <p className="text-oscar-text-muted text-sm">Bora criar o primeiro registro?</p>
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="admin-table">
@@ -316,7 +357,7 @@ export default function EntityPage({
                     {(item.id as string).slice(0, 8)}...
                   </td>
                   {config.columns.map((col) => (
-                    <td key={col}>{getNestedValue(item, col)}</td>
+                    <td key={col}>{renderCellValue(col, getNestedValue(item, col))}</td>
                   ))}
                   <td className="text-right space-x-3">
                     <button
