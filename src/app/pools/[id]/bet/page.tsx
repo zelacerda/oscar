@@ -61,7 +61,7 @@ export default async function BetPage({ params }: Props) {
     tier,
     label: TIER_LABEL[tier],
     points: TIER_POINTS[tier],
-    categories: categories.filter((c) => c.tier === tier),
+    categories: categories.filter((c) => c.tier === tier && c.nominees.length > 0),
   })).filter((g) => g.categories.length > 0);
 
   const initialBets: Record<string, string> = {};
