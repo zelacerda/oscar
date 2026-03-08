@@ -10,6 +10,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/login",
   },
   callbacks: {
+    authorized({ auth: session, request: { nextUrl } }) {
+      const isLoggedIn = !!session?.user;
+      const isOnLogin = nextUrl.pathname === "/login";
+
+      if (isOnLogin) {
+        if (isLoggedIn) return Response.redirect(new URL("/", nextUrl));
+        return true;
+      }
+
+      return isLoggedIn;
+    },
     session({ session, user }) {
       session.user.id = user.id;
       return session;
