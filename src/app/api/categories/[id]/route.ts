@@ -28,7 +28,6 @@ export async function PUT(request: NextRequest, { params }: Params) {
     data: {
       name: body.name,
       tier: body.tier,
-      year: body.year,
     },
   });
   return NextResponse.json(category);
