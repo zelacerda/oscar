@@ -1,10 +1,13 @@
 import { auth, signOut } from "@/lib/auth";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function UserMenu() {
   const session = await auth();
 
   if (!session?.user) return null;
+
+  const isAdmin = session.user.role === "ADMIN";
 
   return (
     <div className="flex items-center gap-3">
@@ -20,6 +23,14 @@ export default async function UserMenu() {
       <span className="text-sm font-medium text-oscar-text-primary">
         {session.user.name}
       </span>
+      {isAdmin && (
+        <Link
+          href="/admin"
+          className="admin-btn-secondary text-xs"
+        >
+          Painel de Administração
+        </Link>
+      )}
       <form
         action={async () => {
           "use server";

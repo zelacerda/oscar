@@ -45,7 +45,6 @@ export default async function HomePage() {
   ]);
 
   const memberPools = memberPoolRows.map((m) => m.pool);
-  const isAdmin = session.user.role === "ADMIN";
   const hasNoPools = adminPools.length === 0 && memberPools.length === 0;
 
   return (
@@ -59,16 +58,6 @@ export default async function HomePage() {
           Bem-vindo ao Oscar — seu bolão do Oscar entre amigos.
         </p>
       </div>
-
-      {/* Atalho Admin */}
-      {isAdmin && (
-        <Link
-          href="/admin"
-          className="admin-btn-secondary mb-8 inline-flex items-center gap-2 text-sm"
-        >
-          Painel de Administração
-        </Link>
-      )}
 
       {/* Estado vazio */}
       {hasNoPools && (
