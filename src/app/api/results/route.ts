@@ -2,15 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/api-auth";
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   const { error } = await requireAuth();
   if (error) return error;
 
-  const { searchParams } = new URL(request.url);
-  const year = searchParams.get("year");
-
   const results = await prisma.result.findMany({
-    where: year ? { year: parseInt(year) } : undefined,
     include: {
       category: { select: { id: true, name: true, tier: true } },
       winnerNominee: { select: { id: true, name: true, movie: true } },
@@ -42,7 +38,6 @@ export async function POST(request: NextRequest) {
 
   const result = await prisma.result.create({
     data: {
-      year: body.year,
       categoryId: body.categoryId,
       winnerNomineeId: body.winnerNomineeId,
     },

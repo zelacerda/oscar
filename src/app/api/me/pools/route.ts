@@ -14,7 +14,6 @@ export async function GET() {
       select: {
         id: true,
         name: true,
-        year: true,
         inviteCode: true,
         lockDate: true,
         _count: { select: { members: true } },
@@ -31,7 +30,6 @@ export async function GET() {
           select: {
             id: true,
             name: true,
-            year: true,
             lockDate: true,
             admin: { select: { name: true } },
             _count: { select: { members: true } },

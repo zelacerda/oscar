@@ -60,7 +60,6 @@ export const entityConfigs: Record<string, EntityConfig> = {
     apiPath: "/api/pools",
     fields: [
       { name: "name", label: "Nome do Bolão", type: "text", required: true, helpText: "Dá um nome criativo pro bolão!" },
-      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia do Oscar" },
       { name: "lockDate", label: "Fecha quando?", type: "datetime-local", required: true, helpText: "Depois dessa data ninguém mais consegue apostar" },
       {
         name: "adminId",
@@ -73,7 +72,6 @@ export const entityConfigs: Record<string, EntityConfig> = {
     ],
     columns: [
       { key: "name", label: "Nome" },
-      { key: "year", label: "Ano" },
       { key: "lockDate", label: "Fecha em" },
       { key: "admin.name", label: "Dono" },
     ],
@@ -125,12 +123,10 @@ export const entityConfigs: Record<string, EntityConfig> = {
           { value: "BASE", label: "Base (1 pt)" },
         ],
       },
-      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
     ],
     columns: [
       { key: "name", label: "Categoria" },
       { key: "tier", label: "Importância" },
-      { key: "year", label: "Ano" },
     ],
   },
   bets: {
@@ -176,7 +172,6 @@ export const entityConfigs: Record<string, EntityConfig> = {
     description: "Os vencedores de cada categoria. Atualize conforme os prêmios forem anunciados!",
     apiPath: "/api/results",
     fields: [
-      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
       {
         name: "categoryId",
         label: "Categoria",
@@ -198,7 +193,6 @@ export const entityConfigs: Record<string, EntityConfig> = {
     columns: [
       { key: "category.name", label: "Categoria" },
       { key: "winnerNominee.name", label: "Vencedor" },
-      { key: "year", label: "Ano" },
     ],
   },
 };

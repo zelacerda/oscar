@@ -16,7 +16,6 @@ export default async function HomePage() {
       select: {
         id: true,
         name: true,
-        year: true,
         inviteCode: true,
         lockDate: true,
         _count: { select: { members: true } },
@@ -33,7 +32,6 @@ export default async function HomePage() {
           select: {
             id: true,
             name: true,
-            year: true,
             lockDate: true,
             admin: { select: { name: true } },
             _count: { select: { members: true } },
@@ -84,7 +82,7 @@ export default async function HomePage() {
               >
                 <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
                 <p className="mt-1 text-xs text-oscar-text-muted">
-                  {pool.year} &middot; {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
+                  {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   {pool.admin.name && <> &middot; por {pool.admin.name}</>}
                 </p>
               </Link>
@@ -106,7 +104,7 @@ export default async function HomePage() {
                 >
                   <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
                   <p className="mt-1 text-xs text-oscar-text-muted">
-                    {pool.year} &middot; {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
+                    {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   </p>
                 </Link>
                 <div className="mt-3">

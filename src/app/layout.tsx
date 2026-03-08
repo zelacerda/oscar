@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Providers>
           <header className="flex items-center justify-between border-b border-oscar-border px-6 py-3">
-            <span className="admin-heading text-lg">Oscar</span>
+            <span className="admin-heading text-lg">Bolão do Oscar - versão 2026</span>
             <UserMenu />
           </header>
           {children}

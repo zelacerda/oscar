@@ -26,7 +26,6 @@ export async function POST(request: NextRequest) {
     data: {
       name: body.name,
       movie: body.movie,
-      year: body.year,
       categoryId: body.categoryId,
     },
   });
