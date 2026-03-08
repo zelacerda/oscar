@@ -1,0 +1,24 @@
+{
+  "id": "db-modeling_20260308",
+  "title": "Modelagem do Banco e Interface de Admin",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T13:40:00.000Z",
+  "phases": {
+    "total": 4,
+    "completed": 4
+  },
+  "tasks": {
+    "total": 19,
+    "completed": 19
+  },
+  "commits": [
+    "9277927: feat: initialize Next.js project with TypeScript and Tailwind",
+    "fd21494: feat: install and configure Prisma ORM with PostgreSQL",
+    "9d257f1: feat: configure PostgreSQL connection with Docker container",
+    "4cb6830: feat: model database schema with all tables and relationships",
+    "6db2dd4: feat: add CRUD API routes for all entities",
+    "1ab74a8: feat: add admin panel with CRUD interface for all entities"
+  ]
+}

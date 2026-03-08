@@ -1,0 +1,38 @@
+{
+  "status": "complete",
+  "project_type": "greenfield",
+  "current_section": "complete",
+  "current_question": 0,
+  "completed_sections": ["product", "guidelines", "tech_stack", "workflow", "styleguides"],
+  "answers": {
+    "project_name": "oscar",
+    "description": "Aplicação web para gerenciar bolões do Oscar com sistema de pontuação e ranking",
+    "problem": "Organizar bolões do Oscar entre amigos é trabalhoso e manual. Não existe forma prática de gerenciar apostas, calcular pontuações e exibir rankings.",
+    "target_users": "Grupos de amigos e familiares que fazem bolões do Oscar",
+    "goals": ["Simplicidade de uso", "Cálculo automático de pontuação e ranking", "Experiência mobile-first"],
+    "desirable": "Atualização automática e em tempo real dos resultados",
+    "voice": "Amigável e descontraído",
+    "design_principles": ["Simplicidade acima de funcionalidades", "Mobile-first", "Experiência social e diversão", "Performance e rapidez"],
+    "language": "TypeScript",
+    "frontend": "Next.js",
+    "backend": "Next.js API Routes",
+    "database": "PostgreSQL",
+    "infrastructure": "Vercel",
+    "tdd": "Moderado",
+    "commits": "Conventional Commits",
+    "code_review": "Opcional / self-review OK",
+    "verification": "Apenas na conclusão do track",
+    "styleguides": ["TypeScript"]
+  },
+  "files_created": [
+    "conductor/index.md",
+    "conductor/product.md",
+    "conductor/product-guidelines.md",
+    "conductor/tech-stack.md",
+    "conductor/workflow.md",
+    "conductor/tracks.md",
+    "conductor/code_styleguides/typescript.md"
+  ],
+  "started_at": "2026-03-08T00:00:00Z",
+  "last_updated": "2026-03-08T00:00:00Z"
+}
