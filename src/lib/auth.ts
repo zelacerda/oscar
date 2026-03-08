@@ -1,7 +1,16 @@
-import NextAuth from "next-auth";
+import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
+import type { Role } from "@/generated/prisma/client";
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      role: Role;
+    } & DefaultSession["user"];
+  }
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma as never),
@@ -23,6 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     },
     session({ session, user }) {
       session.user.id = user.id;
+      session.user.role = (user as unknown as { role: Role }).role;
       return session;
     },
   },
