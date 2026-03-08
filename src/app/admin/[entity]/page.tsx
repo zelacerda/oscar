@@ -311,7 +311,12 @@ export default function EntityPage({
 
   async function handleDelete(id: string) {
     if (!confirm("Tem certeza que quer apagar isso? Não tem volta!")) return;
-    await fetch(`${config.apiPath}/${id}`, { method: "DELETE" });
+    const res = await fetch(`${config.apiPath}/${id}`, { method: "DELETE" });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      alert(data?.error || "Eita, deu ruim ao excluir!");
+      return;
+    }
     fetchItems();
   }
 

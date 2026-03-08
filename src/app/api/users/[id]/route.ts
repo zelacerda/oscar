@@ -36,6 +36,20 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
   if (error) return error;
 
   const { id } = await params;
+
+  const poolsAsAdmin = await prisma.pool.findMany({
+    where: { adminId: id },
+    select: { name: true },
+  });
+
+  if (poolsAsAdmin.length > 0) {
+    const names = poolsAsAdmin.map((p) => p.name).join(", ");
+    return NextResponse.json(
+      { error: `Esse usuário é dono dos bolões: ${names}. Troque o dono antes de excluir.` },
+      { status: 409 }
+    );
+  }
+
   await prisma.user.delete({ where: { id } });
   return NextResponse.json({ success: true });
 }
