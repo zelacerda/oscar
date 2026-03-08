@@ -13,4 +13,6 @@
 
 | [x] | ptbr-polish_20260308 | Revisão PT-BR e Layout da Home | 2026-03-08 | 2026-03-08 |
 
+| [x] | remove-year_20260308 | Remover campo "ano" e simplificar aplicação | 2026-03-08 | 2026-03-08 |
+
 <!-- Tracks registered by /conductor:new-track -->

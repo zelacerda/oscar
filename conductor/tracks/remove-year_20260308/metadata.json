@@ -1,0 +1,20 @@
+{
+  "id": "remove-year_20260308",
+  "title": "Remover campo \"ano\" e simplificar aplicação",
+  "type": "refactor",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T14:00:00.000Z",
+  "phases": {
+    "total": 3,
+    "completed": 3
+  },
+  "tasks": {
+    "total": 16,
+    "completed": 16
+  },
+  "commits": [
+    "26637c0: refactor: remove year field from schema and update seed (remove-year_20260308)",
+    "b7ecba1: refactor: remove year from APIs, admin config, home cards, and header (remove-year_20260308)"
+  ]
+}
