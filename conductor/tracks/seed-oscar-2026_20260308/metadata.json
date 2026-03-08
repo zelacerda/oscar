@@ -1,0 +1,16 @@
+{
+  "id": "seed-oscar-2026_20260308",
+  "title": "Seed de Categorias e Nomeados do Oscar 2026",
+  "type": "chore",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T00:00:00.000Z",
+  "phases": {
+    "total": 2,
+    "completed": 2
+  },
+  "tasks": {
+    "total": 5,
+    "completed": 5
+  }
+}
