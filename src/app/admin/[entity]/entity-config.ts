@@ -1,9 +1,13 @@
 export type FieldConfig = {
   name: string;
   label: string;
-  type: "text" | "email" | "password" | "number" | "select" | "datetime-local";
+  type: "text" | "email" | "password" | "number" | "select" | "datetime-local" | "relation";
   options?: { value: string; label: string }[];
   required?: boolean;
+  relation?: {
+    apiPath: string;
+    labelField: string | string[];
+  };
 };
 
 export type EntityConfig = {
@@ -40,7 +44,13 @@ export const entityConfigs: Record<string, EntityConfig> = {
       { name: "name", label: "Nome", type: "text", required: true },
       { name: "year", label: "Ano", type: "number", required: true },
       { name: "lockDate", label: "Data de Bloqueio", type: "datetime-local", required: true },
-      { name: "adminId", label: "Admin ID", type: "text", required: true },
+      {
+        name: "adminId",
+        label: "Admin",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
+      },
     ],
     columns: ["name", "year", "lockDate", "admin.name"],
   },
@@ -48,8 +58,20 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Pool Members",
     apiPath: "/api/pool-members",
     fields: [
-      { name: "poolId", label: "Pool ID", type: "text", required: true },
-      { name: "userId", label: "User ID", type: "text", required: true },
+      {
+        name: "poolId",
+        label: "Pool",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/pools", labelField: "name" },
+      },
+      {
+        name: "userId",
+        label: "User",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
+      },
     ],
     columns: ["pool.name", "user.name", "createdAt"],
   },
@@ -81,7 +103,13 @@ export const entityConfigs: Record<string, EntityConfig> = {
       { name: "name", label: "Nome", type: "text", required: true },
       { name: "movie", label: "Filme", type: "text", required: true },
       { name: "year", label: "Ano", type: "number", required: true },
-      { name: "categoryId", label: "Category ID", type: "text", required: true },
+      {
+        name: "categoryId",
+        label: "Categoria",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/categories", labelField: "name" },
+      },
     ],
     columns: ["name", "movie", "year", "category.name"],
   },
@@ -89,9 +117,27 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Bets",
     apiPath: "/api/bets",
     fields: [
-      { name: "poolMemberId", label: "Pool Member ID", type: "text", required: true },
-      { name: "categoryId", label: "Category ID", type: "text", required: true },
-      { name: "nomineeId", label: "Nominee ID", type: "text", required: true },
+      {
+        name: "poolMemberId",
+        label: "Membro do Bolão",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/pool-members", labelField: ["user.name", "pool.name"] },
+      },
+      {
+        name: "categoryId",
+        label: "Categoria",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/categories", labelField: "name" },
+      },
+      {
+        name: "nomineeId",
+        label: "Indicado",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
+      },
     ],
     columns: ["poolMember.user.name", "category.name", "nominee.name", "createdAt"],
   },
@@ -100,8 +146,20 @@ export const entityConfigs: Record<string, EntityConfig> = {
     apiPath: "/api/results",
     fields: [
       { name: "year", label: "Ano", type: "number", required: true },
-      { name: "categoryId", label: "Category ID", type: "text", required: true },
-      { name: "winnerNomineeId", label: "Winner Nominee ID", type: "text", required: true },
+      {
+        name: "categoryId",
+        label: "Categoria",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/categories", labelField: "name" },
+      },
+      {
+        name: "winnerNomineeId",
+        label: "Vencedor",
+        type: "relation",
+        required: true,
+        relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
+      },
     ],
     columns: ["category.name", "winnerNominee.name", "year"],
   },

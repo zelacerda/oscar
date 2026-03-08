@@ -15,6 +15,11 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
   return String(value ?? "—");
 }
 
+function buildLabel(item: Record<string, unknown>, labelField: string | string[]): string {
+  const fields = Array.isArray(labelField) ? labelField : [labelField];
+  return fields.map((f) => getNestedValue(item, f)).join(" — ");
+}
+
 type FormModalProps = {
   fields: FieldConfig[];
   initialData?: Record<string, unknown>;
@@ -36,6 +41,33 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
     return data;
   });
 
+  const [relationOptions, setRelationOptions] = useState<
+    Record<string, { value: string; label: string }[]>
+  >({});
+
+  useEffect(() => {
+    const relationFields = fields.filter((f) => f.type === "relation" && f.relation);
+    Promise.all(
+      relationFields.map(async (f) => {
+        const res = await fetch(f.relation!.apiPath);
+        const data: Record<string, unknown>[] = await res.json();
+        return {
+          name: f.name,
+          options: data.map((item) => ({
+            value: item.id as string,
+            label: buildLabel(item, f.relation!.labelField),
+          })),
+        };
+      })
+    ).then((results) => {
+      const opts: Record<string, { value: string; label: string }[]> = {};
+      results.forEach((r) => {
+        opts[r.name] = r.options;
+      });
+      setRelationOptions(opts);
+    });
+  }, [fields]);
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const parsed: Record<string, unknown> = {};
@@ -45,6 +77,61 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
       else parsed[f.name] = val;
     });
     onSubmit(parsed);
+  }
+
+  function renderField(field: FieldConfig) {
+    if (field.type === "select") {
+      return (
+        <select
+          value={formData[field.name]}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
+          }
+          className="w-full border rounded px-3 py-2 text-sm"
+          required={field.required}
+        >
+          <option value="">Selecione...</option>
+          {field.options?.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    if (field.type === "relation") {
+      const options = relationOptions[field.name] ?? [];
+      return (
+        <select
+          value={formData[field.name]}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
+          }
+          className="w-full border rounded px-3 py-2 text-sm"
+          required={field.required}
+        >
+          <option value="">Selecione...</option>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+
+    return (
+      <input
+        type={field.type}
+        value={formData[field.name]}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
+        }
+        className="w-full border rounded px-3 py-2 text-sm"
+        required={field.required}
+      />
+    );
   }
 
   return (
@@ -57,33 +144,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 {field.label}
               </label>
-              {field.type === "select" ? (
-                <select
-                  value={formData[field.name]}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
-                  }
-                  className="w-full border rounded px-3 py-2 text-sm"
-                  required={field.required}
-                >
-                  <option value="">Selecione...</option>
-                  {field.options?.map((opt) => (
-                    <option key={opt.value} value={opt.value}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-              ) : (
-                <input
-                  type={field.type}
-                  value={formData[field.name]}
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
-                  }
-                  className="w-full border rounded px-3 py-2 text-sm"
-                  required={field.required}
-                />
-              )}
+              {renderField(field)}
             </div>
           ))}
           <div className="flex justify-end gap-2 pt-2">
@@ -135,21 +196,31 @@ export default function EntityPage({
   if (!config) return notFound();
 
   async function handleCreate(data: Record<string, unknown>) {
-    await fetch(config.apiPath, {
+    const res = await fetch(config.apiPath, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      alert(`Erro ao criar: ${err?.error || res.statusText}`);
+      return;
+    }
     setShowForm(false);
     fetchItems();
   }
 
   async function handleUpdate(data: Record<string, unknown>) {
-    await fetch(`${config.apiPath}/${editingItem?.id}`, {
+    const res = await fetch(`${config.apiPath}/${editingItem?.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      alert(`Erro ao atualizar: ${err?.error || res.statusText}`);
+      return;
+    }
     setEditingItem(null);
     fetchItems();
   }
