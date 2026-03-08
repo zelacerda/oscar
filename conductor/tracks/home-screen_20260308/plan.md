@@ -3,7 +3,7 @@
 **Track ID:** home-screen_20260308
 **Spec:** [spec.md](./spec.md)
 **Created:** 2026-03-08
-**Status:** [ ] Not Started
+**Status:** [~] In Progress
 
 ## Overview
 
@@ -15,8 +15,8 @@ Criar endpoint que retorna os dados necessarios para a Home: boloes que o usuari
 
 ### Tasks
 
-- [ ] Task 1.1: Criar endpoint `GET /api/me/pools` que retorna os boloes do usuario autenticado, separados em `adminPools` (boloes que administra) e `memberPools` (boloes que participa como membro)
-- [ ] Task 1.2: Incluir no retorno o `inviteCode` dos boloes administrados para geracao de link de convite
+- [x] Task 1.1: Criar endpoint `GET /api/me/pools` que retorna os boloes do usuario autenticado, separados em `adminPools` (boloes que administra) e `memberPools` (boloes que participa como membro)
+- [x] Task 1.2: Incluir no retorno o `inviteCode` dos boloes administrados para geracao de link de convite
 
 ### Verification
 
