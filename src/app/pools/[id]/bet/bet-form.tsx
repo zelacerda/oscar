@@ -89,9 +89,13 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
                         className="mt-0.5 accent-oscar-gold"
                       />
                       <span className="text-sm text-oscar-text-primary">
-                        {nom.name}
-                        {nom.movie && (
-                          <span className="ml-1 text-xs text-oscar-text-muted">({nom.movie})</span>
+                        {nom.movie ? (
+                          <>
+                            {nom.movie}
+                            <span className="ml-1 text-xs text-oscar-text-muted">({nom.name})</span>
+                          </>
+                        ) : (
+                          nom.name
                         )}
                       </span>
                     </label>
