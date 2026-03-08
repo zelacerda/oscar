@@ -53,10 +53,10 @@ export default async function HomePage() {
       {/* Boas-vindas */}
       <div className="mb-8">
         <h1 className="admin-heading text-2xl">
-          Ola, {session.user.name?.split(" ")[0] ?? "usuario"}!
+          Olá, {session.user.name?.split(" ")[0] ?? "usuário"}!
         </h1>
         <p className="mt-1 text-sm text-oscar-text-secondary">
-          Bem-vindo ao Oscar — seu bolao do Oscar entre amigos.
+          Bem-vindo ao Oscar — seu bolão do Oscar entre amigos.
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export default async function HomePage() {
           href="/admin"
           className="admin-btn-secondary mb-8 inline-flex items-center gap-2 text-sm"
         >
-          Painel de Administracao
+          Painel de Administração
         </Link>
       )}
 
@@ -74,18 +74,18 @@ export default async function HomePage() {
       {hasNoPools && (
         <div className="admin-card p-8 text-center">
           <p className="text-oscar-text-secondary">
-            Voce ainda nao participa de nenhum bolao.
+            Você ainda não participa de nenhum bolão.
           </p>
           <Link href="/pools/new" className="admin-btn-primary mt-4 inline-block">
-            Criar Novo Bolao
+            Criar Novo Bolão
           </Link>
         </div>
       )}
 
-      {/* Meus Boloes (como membro) */}
+      {/* Meus Bolões (como membro) */}
       {memberPools.length > 0 && (
         <section className="mb-8">
-          <h2 className="admin-heading mb-4 text-lg">Meus Boloes</h2>
+          <h2 className="admin-heading mb-4 text-lg">Meus Bolões</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {memberPools.map((pool) => (
               <Link
@@ -104,10 +104,10 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Boloes que Administro */}
+      {/* Bolões que Administro */}
       {adminPools.length > 0 && (
         <section className="mb-8">
-          <h2 className="admin-heading mb-4 text-lg">Boloes que Administro</h2>
+          <h2 className="admin-heading mb-4 text-lg">Bolões que Administro</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {adminPools.map((pool) => (
               <div key={pool.id} className="admin-card p-4">
@@ -129,11 +129,11 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* CTA Criar Novo Bolao */}
+      {/* CTA Criar Novo Bolão */}
       {!hasNoPools && (
         <div className="text-center">
           <Link href="/pools/new" className="admin-btn-primary inline-block">
-            Criar Novo Bolao
+            Criar Novo Bolão
           </Link>
         </div>
       )}
