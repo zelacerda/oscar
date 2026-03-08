@@ -1,10 +1,12 @@
 import NextAuth from "next-auth";
 import { authConfig } from "@/lib/auth.config";
 
-export const { auth: middleware } = NextAuth(authConfig);
+const { auth } = NextAuth(authConfig);
+
+export default auth;
 
 export const config = {
   matcher: [
-    "/((?!login|api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
