@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./providers";
+import UserMenu from "@/components/user-menu";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +29,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <header className="flex items-center justify-between border-b border-oscar-border px-6 py-3">
+            <span className="admin-heading text-lg">Oscar</span>
+            <UserMenu />
+          </header>
+          {children}
+        </Providers>
       </body>
     </html>
   );
