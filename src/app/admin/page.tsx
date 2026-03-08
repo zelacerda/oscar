@@ -14,7 +14,6 @@ const dashboardItems: Omit<DashboardStats, "count">[] = [
   { label: "Galera", icon: "👥", href: "/admin/users" },
   { label: "Bolões", icon: "🎲", href: "/admin/pools" },
   { label: "Categorias", icon: "🏆", href: "/admin/categories" },
-  { label: "Indicados", icon: "🎬", href: "/admin/nominees" },
   { label: "Apostas", icon: "🎯", href: "/admin/bets" },
   { label: "Resultados", icon: "⭐", href: "/admin/results" },
 ];
@@ -23,7 +22,6 @@ const apiMap: Record<string, string> = {
   "Galera": "/api/users",
   "Bolões": "/api/pools",
   "Categorias": "/api/categories",
-  "Indicados": "/api/nominees",
   "Apostas": "/api/bets",
   "Resultados": "/api/results",
 };

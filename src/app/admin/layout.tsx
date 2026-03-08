@@ -9,7 +9,6 @@ const entities = [
   { name: "Bolões", icon: "🎲", href: "/admin/pools", api: "/api/pools" },
   { name: "Membros", icon: "🤝", href: "/admin/pool-members", api: "/api/pool-members" },
   { name: "Categorias", icon: "🏆", href: "/admin/categories", api: "/api/categories" },
-  { name: "Indicados", icon: "🎬", href: "/admin/nominees", api: "/api/nominees" },
   { name: "Apostas", icon: "🎯", href: "/admin/bets", api: "/api/bets" },
   { name: "Resultados", icon: "⭐", href: "/admin/results", api: "/api/results" },
 ];
@@ -41,7 +40,7 @@ export default function AdminLayout({
             <div className="flex items-center gap-3">
               <span className="text-3xl">🏆</span>
               <div>
-                <h1 className="text-lg font-bold text-oscar-gold" style={{ fontFamily: "Georgia, serif" }}>
+                <h1 className="text-lg font-bold text-oscar-gold">
                   Oscar Admin
                 </h1>
                 <p className="text-xs text-oscar-text-on-dark/60">

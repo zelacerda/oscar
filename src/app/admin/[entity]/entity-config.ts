@@ -15,12 +15,17 @@ export type FieldConfig = {
   };
 };
 
+export type ColumnConfig = {
+  key: string;
+  label: string;
+};
+
 export type EntityConfig = {
   name: string;
   description: string;
   apiPath: string;
   fields: FieldConfig[];
-  columns: string[];
+  columns: ColumnConfig[];
 };
 
 export const entityConfigs: Record<string, EntityConfig> = {
@@ -43,7 +48,12 @@ export const entityConfigs: Record<string, EntityConfig> = {
         ],
       },
     ],
-    columns: ["name", "email", "role", "createdAt"],
+    columns: [
+      { key: "name", label: "Nome" },
+      { key: "email", label: "Email" },
+      { key: "role", label: "Papel" },
+      { key: "createdAt", label: "Criado em" },
+    ],
   },
   pools: {
     name: "Bolões",
@@ -62,7 +72,12 @@ export const entityConfigs: Record<string, EntityConfig> = {
         relation: { apiPath: "/api/users", labelField: ["name", "email"] },
       },
     ],
-    columns: ["name", "year", "lockDate", "admin.name"],
+    columns: [
+      { key: "name", label: "Nome" },
+      { key: "year", label: "Ano" },
+      { key: "lockDate", label: "Fecha em" },
+      { key: "admin.name", label: "Dono" },
+    ],
   },
   "pool-members": {
     name: "Membros",
@@ -86,7 +101,11 @@ export const entityConfigs: Record<string, EntityConfig> = {
         relation: { apiPath: "/api/users", labelField: ["name", "email"] },
       },
     ],
-    columns: ["pool.name", "user.name", "createdAt"],
+    columns: [
+      { key: "pool.name", label: "Bolão" },
+      { key: "user.name", label: "Participante" },
+      { key: "createdAt", label: "Entrou em" },
+    ],
   },
   categories: {
     name: "Categorias",
@@ -109,26 +128,11 @@ export const entityConfigs: Record<string, EntityConfig> = {
       },
       { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
     ],
-    columns: ["name", "tier", "year"],
-  },
-  nominees: {
-    name: "Indicados",
-    description: "Todos os indicados ao Oscar. Cada um pertence a uma categoria específica.",
-    apiPath: "/api/nominees",
-    fields: [
-      { name: "name", label: "Nome do Indicado", type: "text", required: true, helpText: "Nome da pessoa ou do filme indicado" },
-      { name: "movie", label: "Filme", type: "text", required: true, helpText: "Filme relacionado a essa indicação" },
-      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
-      {
-        name: "categoryId",
-        label: "Categoria",
-        type: "relation",
-        required: true,
-        helpText: "Escolhe a categoria em que tá concorrendo",
-        relation: { apiPath: "/api/categories", labelField: "name" },
-      },
+    columns: [
+      { key: "name", label: "Categoria" },
+      { key: "tier", label: "Importância" },
+      { key: "year", label: "Ano" },
     ],
-    columns: ["name", "movie", "year", "category.name"],
   },
   bets: {
     name: "Apostas",
@@ -161,7 +165,12 @@ export const entityConfigs: Record<string, EntityConfig> = {
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],
-    columns: ["poolMember.user.name", "category.name", "nominee.name", "createdAt"],
+    columns: [
+      { key: "poolMember.user.name", label: "Quem" },
+      { key: "category.name", label: "Categoria" },
+      { key: "nominee.name", label: "Aposta" },
+      { key: "createdAt", label: "Quando" },
+    ],
   },
   results: {
     name: "Resultados",
@@ -187,6 +196,10 @@ export const entityConfigs: Record<string, EntityConfig> = {
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],
-    columns: ["category.name", "winnerNominee.name", "year"],
+    columns: [
+      { key: "category.name", label: "Categoria" },
+      { key: "winnerNominee.name", label: "Vencedor" },
+      { key: "year", label: "Ano" },
+    ],
   },
 };

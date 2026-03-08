@@ -343,9 +343,8 @@ export default function EntityPage({
           <table className="admin-table">
             <thead>
               <tr>
-                <th>ID</th>
                 {config.columns.map((col) => (
-                  <th key={col}>{col}</th>
+                  <th key={col.key}>{col.label}</th>
                 ))}
                 <th className="text-right">Ações</th>
               </tr>
@@ -353,11 +352,8 @@ export default function EntityPage({
             <tbody>
               {items.map((item) => (
                 <tr key={item.id as string}>
-                  <td className="font-mono text-oscar-text-muted">
-                    {(item.id as string).slice(0, 8)}...
-                  </td>
                   {config.columns.map((col) => (
-                    <td key={col}>{renderCellValue(col, getNestedValue(item, col))}</td>
+                    <td key={col.key}>{renderCellValue(col.key, getNestedValue(item, col.key))}</td>
                   ))}
                   <td className="text-right space-x-3">
                     <button
