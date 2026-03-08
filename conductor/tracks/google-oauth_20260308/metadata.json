@@ -27,6 +27,7 @@
     "e466e8e: feat: add auth middleware to redirect unauthenticated users to /login",
     "a3412f0: feat: protect all API routes with auth guard returning 401",
     "dcc9923: feat: restrict admin panel to users with ADMIN role",
-    "816c880: refactor: remove password field from admin entity config"
+    "816c880: refactor: remove password field from admin entity config",
+    "0ac9298: fix: use JWT session strategy and fix middleware for Next.js 16 Edge Runtime"
   ]
 }
