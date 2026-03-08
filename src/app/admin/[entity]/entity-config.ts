@@ -4,6 +4,7 @@ export type FieldConfig = {
   type: "text" | "email" | "password" | "number" | "select" | "datetime-local" | "relation";
   options?: { value: string; label: string }[];
   required?: boolean;
+  helpText?: string;
   relation?: {
     apiPath: string;
     labelField: string | string[];
@@ -22,13 +23,14 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Galera",
     apiPath: "/api/users",
     fields: [
-      { name: "name", label: "Nome", type: "text", required: true },
-      { name: "email", label: "Email", type: "email", required: true },
-      { name: "password", label: "Senha", type: "password", required: true },
+      { name: "name", label: "Nome", type: "text", required: true, helpText: "Nome completo da pessoa" },
+      { name: "email", label: "Email", type: "email", required: true, helpText: "Email pra login — tem que ser único" },
+      { name: "password", label: "Senha", type: "password", required: true, helpText: "Cria uma senha maneira pro usuário" },
       {
         name: "role",
         label: "Papel",
         type: "select",
+        helpText: "Admin pode gerenciar tudo, participante só aposta",
         options: [
           { value: "USER", label: "Participante" },
           { value: "ADMIN", label: "Administrador" },
@@ -41,14 +43,15 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Bolões",
     apiPath: "/api/pools",
     fields: [
-      { name: "name", label: "Nome do Bolão", type: "text", required: true },
-      { name: "year", label: "Ano", type: "number", required: true },
-      { name: "lockDate", label: "Fecha quando?", type: "datetime-local", required: true },
+      { name: "name", label: "Nome do Bolão", type: "text", required: true, helpText: "Dá um nome criativo pro bolão!" },
+      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia do Oscar" },
+      { name: "lockDate", label: "Fecha quando?", type: "datetime-local", required: true, helpText: "Depois dessa data ninguém mais consegue apostar" },
       {
         name: "adminId",
         label: "Dono do Bolão",
         type: "relation",
         required: true,
+        helpText: "Quem manda nesse bolão",
         relation: { apiPath: "/api/users", labelField: ["name", "email"] },
       },
     ],
@@ -63,6 +66,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Bolão",
         type: "relation",
         required: true,
+        helpText: "Escolhe o bolão",
         relation: { apiPath: "/api/pools", labelField: "name" },
       },
       {
@@ -70,6 +74,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Participante",
         type: "relation",
         required: true,
+        helpText: "Quem vai entrar no bolão",
         relation: { apiPath: "/api/users", labelField: ["name", "email"] },
       },
     ],
@@ -79,12 +84,13 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Categorias",
     apiPath: "/api/categories",
     fields: [
-      { name: "name", label: "Nome da Categoria", type: "text", required: true },
+      { name: "name", label: "Nome da Categoria", type: "text", required: true, helpText: "Ex: Melhor Filme, Melhor Diretor..." },
       {
         name: "tier",
         label: "Importância",
         type: "select",
         required: true,
+        helpText: "Quanto mais importante, mais pontos vale o acerto",
         options: [
           { value: "GOLD", label: "Ouro (10 pts)" },
           { value: "SILVER", label: "Prata (5 pts)" },
@@ -92,7 +98,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
           { value: "BASE", label: "Base (1 pt)" },
         ],
       },
-      { name: "year", label: "Ano", type: "number", required: true },
+      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
     ],
     columns: ["name", "tier", "year"],
   },
@@ -100,14 +106,15 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Indicados",
     apiPath: "/api/nominees",
     fields: [
-      { name: "name", label: "Nome do Indicado", type: "text", required: true },
-      { name: "movie", label: "Filme", type: "text", required: true },
-      { name: "year", label: "Ano", type: "number", required: true },
+      { name: "name", label: "Nome do Indicado", type: "text", required: true, helpText: "Nome da pessoa ou do filme indicado" },
+      { name: "movie", label: "Filme", type: "text", required: true, helpText: "Filme relacionado a essa indicação" },
+      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
       {
         name: "categoryId",
         label: "Categoria",
         type: "relation",
         required: true,
+        helpText: "Escolhe a categoria em que tá concorrendo",
         relation: { apiPath: "/api/categories", labelField: "name" },
       },
     ],
@@ -122,6 +129,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Quem apostou",
         type: "relation",
         required: true,
+        helpText: "Membro do bolão que tá fazendo a aposta",
         relation: { apiPath: "/api/pool-members", labelField: ["user.name", "pool.name"] },
       },
       {
@@ -129,6 +137,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Categoria",
         type: "relation",
         required: true,
+        helpText: "Categoria do Oscar",
         relation: { apiPath: "/api/categories", labelField: "name" },
       },
       {
@@ -136,6 +145,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Aposta em quem?",
         type: "relation",
         required: true,
+        helpText: "Indicado que essa pessoa acha que vai ganhar",
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],
@@ -145,12 +155,13 @@ export const entityConfigs: Record<string, EntityConfig> = {
     name: "Resultados",
     apiPath: "/api/results",
     fields: [
-      { name: "year", label: "Ano", type: "number", required: true },
+      { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },
       {
         name: "categoryId",
         label: "Categoria",
         type: "relation",
         required: true,
+        helpText: "Categoria que já foi anunciada",
         relation: { apiPath: "/api/categories", labelField: "name" },
       },
       {
@@ -158,6 +169,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "E o Oscar vai pra...",
         type: "relation",
         required: true,
+        helpText: "Quem levou a estatueta nessa categoria",
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],

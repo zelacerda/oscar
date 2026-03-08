@@ -87,7 +87,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
           }
-          className="w-full border rounded px-3 py-2 text-sm"
+          className="admin-input"
           required={field.required}
         >
           <option value="">Selecione...</option>
@@ -108,7 +108,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
           onChange={(e) =>
             setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
           }
-          className="w-full border rounded px-3 py-2 text-sm"
+          className="admin-input"
           required={field.required}
         >
           <option value="">Selecione...</option>
@@ -128,7 +128,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
         onChange={(e) =>
           setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
         }
-        className="w-full border rounded px-3 py-2 text-sm"
+        className="admin-input"
         required={field.required}
       />
     );
@@ -136,28 +136,31 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <div className="admin-card p-6 w-full max-w-md mx-4">
+        <h3 className="admin-heading text-lg mb-4">{title}</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           {fields.map((field) => (
             <div key={field.name}>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-oscar-text-primary mb-1">
                 {field.label}
               </label>
               {renderField(field)}
+              {field.helpText && (
+                <p className="text-xs text-oscar-text-muted mt-1">{field.helpText}</p>
+              )}
             </div>
           ))}
           <div className="flex justify-end gap-2 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm border rounded hover:bg-gray-50"
+              className="admin-btn-secondary"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+              className="admin-btn-primary"
             >
               Salvar
             </button>
@@ -203,7 +206,7 @@ export default function EntityPage({
     });
     if (!res.ok) {
       const err = await res.json().catch(() => null);
-      alert(`Erro ao criar: ${err?.error || res.statusText}`);
+      alert(`Eita, deu ruim ao criar: ${err?.error || res.statusText}`);
       return;
     }
     setShowForm(false);
@@ -218,7 +221,7 @@ export default function EntityPage({
     });
     if (!res.ok) {
       const err = await res.json().catch(() => null);
-      alert(`Erro ao atualizar: ${err?.error || res.statusText}`);
+      alert(`Eita, deu ruim ao atualizar: ${err?.error || res.statusText}`);
       return;
     }
     setEditingItem(null);
@@ -226,7 +229,7 @@ export default function EntityPage({
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("Tem certeza que deseja excluir?")) return;
+    if (!confirm("Tem certeza que quer apagar isso? Não tem volta!")) return;
     await fetch(`${config.apiPath}/${id}`, { method: "DELETE" });
     fetchItems();
   }
@@ -234,56 +237,50 @@ export default function EntityPage({
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">{config.name}</h2>
+        <h2 className="admin-heading text-2xl">{config.name}</h2>
         <button
           onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+          className="admin-btn-primary"
         >
           + Novo
         </button>
       </div>
 
       {loading ? (
-        <p className="text-gray-500">Carregando...</p>
+        <p className="text-oscar-text-muted">Carregando...</p>
       ) : items.length === 0 ? (
-        <p className="text-gray-500">Nenhum registro encontrado.</p>
+        <p className="text-oscar-text-muted">Nenhum registro encontrado.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full bg-white border rounded-lg">
+          <table className="admin-table">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="text-left px-4 py-2 text-sm font-medium text-gray-600">ID</th>
+              <tr>
+                <th>ID</th>
                 {config.columns.map((col) => (
-                  <th key={col} className="text-left px-4 py-2 text-sm font-medium text-gray-600">
-                    {col}
-                  </th>
+                  <th key={col}>{col}</th>
                 ))}
-                <th className="text-right px-4 py-2 text-sm font-medium text-gray-600">
-                  Ações
-                </th>
+                <th className="text-right">Ações</th>
               </tr>
             </thead>
             <tbody>
               {items.map((item) => (
-                <tr key={item.id as string} className="border-t hover:bg-gray-50">
-                  <td className="px-4 py-2 text-sm text-gray-500 font-mono">
+                <tr key={item.id as string}>
+                  <td className="font-mono text-oscar-text-muted">
                     {(item.id as string).slice(0, 8)}...
                   </td>
                   {config.columns.map((col) => (
-                    <td key={col} className="px-4 py-2 text-sm">
-                      {getNestedValue(item, col)}
-                    </td>
+                    <td key={col}>{getNestedValue(item, col)}</td>
                   ))}
-                  <td className="px-4 py-2 text-right space-x-2">
+                  <td className="text-right space-x-3">
                     <button
                       onClick={() => setEditingItem(item)}
-                      className="text-sm text-blue-600 hover:underline"
+                      className="text-sm text-oscar-gold-dark hover:text-oscar-gold font-medium"
                     >
                       Editar
                     </button>
                     <button
                       onClick={() => handleDelete(item.id as string)}
-                      className="text-sm text-red-600 hover:underline"
+                      className="text-sm text-oscar-danger hover:text-oscar-danger/80 font-medium"
                     >
                       Excluir
                     </button>
