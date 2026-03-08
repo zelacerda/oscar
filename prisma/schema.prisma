@@ -67,7 +67,6 @@ model Pool {
   id         String   @id @default(cuid())
   name       String
   inviteCode String   @unique @default(cuid())
-  year       Int
   lockDate   DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -96,22 +95,18 @@ model PoolMember {
 
 model Category {
   id   String @id @default(cuid())
-  name String
+  name String @unique
   tier Tier
-  year Int
 
   nominees Nominee[]
   bets     Bet[]
   result   Result?
-
-  @@unique([name, year])
 }
 
 model Nominee {
   id    String @id @default(cuid())
   name  String
   movie String
-  year  Int
 
   categoryId String
   category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
@@ -139,7 +134,6 @@ model Bet {
 
 model Result {
   id        String   @id @default(cuid())
-  year      Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

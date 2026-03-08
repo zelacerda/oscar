@@ -6,8 +6,6 @@ import { PrismaPg } from "@prisma/adapter-pg";
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
 
-const YEAR = 2026;
-
 type CategoryData = {
   name: string;
   tier: Tier;
@@ -229,11 +227,11 @@ const categories: CategoryData[] = [
     name: "Melhor Canção Original",
     tier: "BASE",
     nominees: [
-      { name: "\"Dear Me\" — Diane Warren", movie: "Diane Warren: Relentless" },
-      { name: "\"Golden\" — EJAE, Mark Sonnenblick, Joong Gyu Kwak, Yu Han Lee, Hee Dong Nam, Jeong Hoon Seo, Teddy Park", movie: "KPop Demon Hunters" },
-      { name: "\"I Lied To You\" — Raphael Saadiq, Ludwig Goransson", movie: "Sinners" },
-      { name: "\"Sweet Dreams Of Joy\" — Nicholas Pike", movie: "Viva Verdi!" },
-      { name: "\"Train Dreams\" — Nick Cave, Bryce Dessner", movie: "Train Dreams" },
+      { name: '"Dear Me" — Diane Warren', movie: "Diane Warren: Relentless" },
+      { name: '"Golden" — EJAE, Mark Sonnenblick, Joong Gyu Kwak, Yu Han Lee, Hee Dong Nam, Jeong Hoon Seo, Teddy Park', movie: "KPop Demon Hunters" },
+      { name: '"I Lied To You" — Raphael Saadiq, Ludwig Goransson', movie: "Sinners" },
+      { name: '"Sweet Dreams Of Joy" — Nicholas Pike', movie: "Viva Verdi!" },
+      { name: '"Train Dreams" — Nick Cave, Bryce Dessner', movie: "Train Dreams" },
     ],
   },
   {
@@ -275,7 +273,7 @@ const categories: CategoryData[] = [
     nominees: [
       { name: "Joshua Seftel, Conall Jones", movie: "All the Empty Rooms" },
       { name: "Craig Renaud, Juan Arredondo", movie: "Armed Only with a Camera: The Life and Death of Brent Renaud" },
-      { name: "Hilla Medalia, Sheila Nevins", movie: "Children No More: \"Were and Are Gone\"" },
+      { name: "Hilla Medalia, Sheila Nevins", movie: 'Children No More: "Were and Are Gone"' },
       { name: "Christalyn Hampton, Geeta Gandbhir", movie: "The Devil Is Busy" },
       { name: "Alison McAlpine", movie: "Perfectly a Strangeness" },
     ],
@@ -298,9 +296,9 @@ async function main() {
 
   for (const cat of categories) {
     const category = await prisma.category.upsert({
-      where: { name_year: { name: cat.name, year: YEAR } },
+      where: { name: cat.name },
       update: { tier: cat.tier },
-      create: { name: cat.name, tier: cat.tier, year: YEAR },
+      create: { name: cat.name, tier: cat.tier },
     });
 
     for (const nom of cat.nominees) {
@@ -309,7 +307,6 @@ async function main() {
           categoryId: category.id,
           name: nom.name,
           movie: nom.movie,
-          year: YEAR,
         },
       });
 
@@ -318,7 +315,6 @@ async function main() {
           data: {
             name: nom.name,
             movie: nom.movie,
-            year: YEAR,
             categoryId: category.id,
           },
         });
