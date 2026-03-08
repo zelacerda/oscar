@@ -7,4 +7,6 @@
 
 | [x] | admin-interface_20260308 | Interface de Administração Avançada | 2026-03-08 | 2026-03-08 |
 
+| [x] | google-oauth_20260308 | Autenticação com Google OAuth | 2026-03-08 | 2026-03-08 |
+
 <!-- Tracks registered by /conductor:new-track -->

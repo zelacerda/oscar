@@ -1,0 +1,32 @@
+{
+  "id": "google-oauth_20260308",
+  "title": "Autenticação com Google OAuth",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T00:00:00.000Z",
+  "current_phase": 4,
+  "current_task": "4.3",
+  "phases": {
+    "total": 4,
+    "completed": 4
+  },
+  "tasks": {
+    "total": 14,
+    "completed": 14
+  },
+  "commits": [
+    "e458268: feat: install next-auth and @auth/prisma-adapter",
+    "4eb01e2: chore: document Google OAuth and NextAuth env vars in .env.example",
+    "1b2ca16: feat: update Prisma schema for NextAuth (Account, Session, remove password)",
+    "580fc96: feat: add migration for NextAuth models (Account, Session)",
+    "63e4edb: feat: configure NextAuth with Google Provider and Prisma Adapter",
+    "6a62da8: feat: add login page with Google sign-in button",
+    "38d0426: feat: add SessionProvider wrapper to root layout",
+    "9f5b979: feat: add user menu with avatar and logout button in header",
+    "e466e8e: feat: add auth middleware to redirect unauthenticated users to /login",
+    "a3412f0: feat: protect all API routes with auth guard returning 401",
+    "dcc9923: feat: restrict admin panel to users with ADMIN role",
+    "816c880: refactor: remove password field from admin entity config"
+  ]
+}

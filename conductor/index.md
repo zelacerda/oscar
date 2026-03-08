@@ -15,6 +15,7 @@ Navigation hub for project context.
 - [ ] [db-modeling_20260308 — Modelagem do Banco e Interface de Admin](./tracks/db-modeling_20260308/index.md)
 - [ ] [seed-oscar-2026_20260308 — Seed de Categorias e Nomeados do Oscar 2026](./tracks/seed-oscar-2026_20260308/index.md)
 - [ ] [admin-interface_20260308 — Interface de Administração Avançada](./tracks/admin-interface_20260308/index.md)
+- [ ] [google-oauth_20260308 — Autenticação com Google OAuth](./tracks/google-oauth_20260308/index.md)
 
 ## Getting Started
 
