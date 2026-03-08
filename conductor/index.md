@@ -16,6 +16,7 @@ Navigation hub for project context.
 - [ ] [seed-oscar-2026_20260308 — Seed de Categorias e Nomeados do Oscar 2026](./tracks/seed-oscar-2026_20260308/index.md)
 - [ ] [admin-interface_20260308 — Interface de Administração Avançada](./tracks/admin-interface_20260308/index.md)
 - [ ] [google-oauth_20260308 — Autenticação com Google OAuth](./tracks/google-oauth_20260308/index.md)
+- [ ] [home-screen_20260308 — Tela Inicial (Home)](./tracks/home-screen_20260308/index.md)
 
 ## Getting Started
 

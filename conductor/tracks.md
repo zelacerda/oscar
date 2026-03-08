@@ -9,4 +9,6 @@
 
 | [x] | google-oauth_20260308 | Autenticação com Google OAuth | 2026-03-08 | 2026-03-08 |
 
+| [ ] | home-screen_20260308 | Tela Inicial (Home) | 2026-03-08 | 2026-03-08 |
+
 <!-- Tracks registered by /conductor:new-track -->
