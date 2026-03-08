@@ -6,6 +6,29 @@ type Params = { params: Promise<{ id: string }> };
 export async function PUT(request: NextRequest, { params }: Params) {
   const { id } = await params;
   const body = await request.json();
+
+  const existing = await prisma.result.findUnique({
+    where: { id },
+    select: { categoryId: true },
+  });
+  if (!existing) {
+    return NextResponse.json({ error: "Resultado não encontrado" }, { status: 404 });
+  }
+
+  const nominee = await prisma.nominee.findUnique({
+    where: { id: body.winnerNomineeId },
+    select: { categoryId: true },
+  });
+  if (!nominee) {
+    return NextResponse.json({ error: "Indicado não encontrado" }, { status: 400 });
+  }
+  if (nominee.categoryId !== existing.categoryId) {
+    return NextResponse.json(
+      { error: "Esse indicado não pertence a essa categoria" },
+      { status: 400 }
+    );
+  }
+
   const result = await prisma.result.update({
     where: { id },
     data: {

@@ -18,6 +18,21 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
+
+  const nominee = await prisma.nominee.findUnique({
+    where: { id: body.winnerNomineeId },
+    select: { categoryId: true },
+  });
+  if (!nominee) {
+    return NextResponse.json({ error: "Indicado não encontrado" }, { status: 400 });
+  }
+  if (nominee.categoryId !== body.categoryId) {
+    return NextResponse.json(
+      { error: "Esse indicado não pertence a essa categoria" },
+      { status: 400 }
+    );
+  }
+
   const result = await prisma.result.create({
     data: {
       year: body.year,
