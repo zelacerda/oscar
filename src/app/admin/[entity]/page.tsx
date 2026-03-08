@@ -23,12 +23,14 @@ function buildLabel(item: Record<string, unknown>, labelField: string | string[]
 type FormModalProps = {
   fields: FieldConfig[];
   initialData?: Record<string, unknown>;
-  onSubmit: (data: Record<string, unknown>) => void;
+  onSubmit: (data: Record<string, unknown>) => Promise<string | null>;
   onClose: () => void;
   title: string;
 };
 
 function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalProps) {
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState<Record<string, string>>(() => {
     const data: Record<string, string> = {};
     fields.forEach((f) => {
@@ -94,15 +96,19 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
     });
   }, [fields, formData, fetchRelationOptions]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
     const parsed: Record<string, unknown> = {};
     fields.forEach((f) => {
       const val = formData[f.name];
       if (f.type === "number") parsed[f.name] = parseInt(val);
       else parsed[f.name] = val;
     });
-    onSubmit(parsed);
+    const err = await onSubmit(parsed);
+    setSubmitting(false);
+    if (err) setError(err);
   }
 
   function handleFieldChange(fieldName: string, value: string) {
@@ -183,19 +189,26 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
               )}
             </div>
           ))}
+          {error && (
+            <div className="p-3 rounded-lg bg-oscar-danger-light text-oscar-danger text-sm">
+              {error}
+            </div>
+          )}
           <div className="flex justify-end gap-2 pt-2">
             <button
               type="button"
               onClick={onClose}
               className="admin-btn-secondary"
+              disabled={submitting}
             >
               Cancelar
             </button>
             <button
               type="submit"
               className="admin-btn-primary"
+              disabled={submitting}
             >
-              Salvar
+              {submitting ? "Salvando..." : "Salvar"}
             </button>
           </div>
         </form>
@@ -231,7 +244,7 @@ export default function EntityPage({
 
   if (!config) return notFound();
 
-  async function handleCreate(data: Record<string, unknown>) {
+  async function handleCreate(data: Record<string, unknown>): Promise<string | null> {
     const res = await fetch(config.apiPath, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -239,14 +252,14 @@ export default function EntityPage({
     });
     if (!res.ok) {
       const err = await res.json().catch(() => null);
-      alert(`Eita, deu ruim ao criar: ${err?.error || res.statusText}`);
-      return;
+      return `Eita, deu ruim ao criar: ${err?.error || res.statusText}`;
     }
     setShowForm(false);
     fetchItems();
+    return null;
   }
 
-  async function handleUpdate(data: Record<string, unknown>) {
+  async function handleUpdate(data: Record<string, unknown>): Promise<string | null> {
     const res = await fetch(`${config.apiPath}/${editingItem?.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -254,11 +267,11 @@ export default function EntityPage({
     });
     if (!res.ok) {
       const err = await res.json().catch(() => null);
-      alert(`Eita, deu ruim ao atualizar: ${err?.error || res.statusText}`);
-      return;
+      return `Eita, deu ruim ao atualizar: ${err?.error || res.statusText}`;
     }
     setEditingItem(null);
     fetchItems();
+    return null;
   }
 
   async function handleDelete(id: string) {
