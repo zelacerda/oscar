@@ -28,11 +28,11 @@ Implementar a interface da Home com as secoes de boas-vindas, boloes e acoes.
 
 ### Tasks
 
-- [ ] Task 2.1: Criar componente `HomePage` em `/src/app/page.tsx` (substituir placeholder) com layout responsivo e boas-vindas ao usuario
-- [ ] Task 2.2: Criar secao "Meus Boloes" com cards/links para os boloes que o usuario participa (links para `/pools/[id]`, podem ser paginas inexistentes por enquanto)
-- [ ] Task 2.3: Criar secao "Boloes que Administro" com cards dos boloes criados pelo usuario, incluindo botao para copiar link de convite (`inviteCode`)
-- [ ] Task 2.4: Criar botao/CTA "Criar Novo Bolao" (link para `/pools/new`, pode ser pagina inexistente)
-- [ ] Task 2.5: Exibir barra lateral de admin (ou link de atalho para `/admin`) quando o usuario tiver role ADMIN
+- [x] Task 2.1: Criar componente `HomePage` em `/src/app/page.tsx` (substituir placeholder) com layout responsivo e boas-vindas ao usuario
+- [x] Task 2.2: Criar secao "Meus Boloes" com cards/links para os boloes que o usuario participa (links para `/pools/[id]`, podem ser paginas inexistentes por enquanto)
+- [x] Task 2.3: Criar secao "Boloes que Administro" com cards dos boloes criados pelo usuario, incluindo botao para copiar link de convite (`inviteCode`)
+- [x] Task 2.4: Criar botao/CTA "Criar Novo Bolao" (link para `/pools/new`, pode ser pagina inexistente)
+- [x] Task 2.5: Exibir barra lateral de admin (ou link de atalho para `/admin`) quando o usuario tiver role ADMIN
 
 ### Verification
 
