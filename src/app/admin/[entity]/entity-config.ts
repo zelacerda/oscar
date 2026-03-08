@@ -13,6 +13,7 @@ export type FieldConfig = {
 
 export type EntityConfig = {
   name: string;
+  description: string;
   apiPath: string;
   fields: FieldConfig[];
   columns: string[];
@@ -21,6 +22,7 @@ export type EntityConfig = {
 export const entityConfigs: Record<string, EntityConfig> = {
   users: {
     name: "Galera",
+    description: "Todo mundo que participa dos bolões. Aqui você cadastra, edita e gerencia os usuários.",
     apiPath: "/api/users",
     fields: [
       { name: "name", label: "Nome", type: "text", required: true, helpText: "Nome completo da pessoa" },
@@ -41,6 +43,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   pools: {
     name: "Bolões",
+    description: "Os bolões do Oscar! Cada bolão tem um dono e uma data limite pra apostar.",
     apiPath: "/api/pools",
     fields: [
       { name: "name", label: "Nome do Bolão", type: "text", required: true, helpText: "Dá um nome criativo pro bolão!" },
@@ -59,6 +62,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   "pool-members": {
     name: "Membros",
+    description: "Quem tá participando de qual bolão. Adicione pessoas aos bolões por aqui.",
     apiPath: "/api/pool-members",
     fields: [
       {
@@ -82,6 +86,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   categories: {
     name: "Categorias",
+    description: "As categorias do Oscar desse ano. Cada uma tem um nível de importância que define a pontuação.",
     apiPath: "/api/categories",
     fields: [
       { name: "name", label: "Nome da Categoria", type: "text", required: true, helpText: "Ex: Melhor Filme, Melhor Diretor..." },
@@ -104,6 +109,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   nominees: {
     name: "Indicados",
+    description: "Todos os indicados ao Oscar. Cada um pertence a uma categoria específica.",
     apiPath: "/api/nominees",
     fields: [
       { name: "name", label: "Nome do Indicado", type: "text", required: true, helpText: "Nome da pessoa ou do filme indicado" },
@@ -122,6 +128,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   bets: {
     name: "Apostas",
+    description: "As apostas de cada participante. Cada pessoa escolhe um indicado por categoria.",
     apiPath: "/api/bets",
     fields: [
       {
@@ -153,6 +160,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   results: {
     name: "Resultados",
+    description: "Os vencedores de cada categoria. Atualize conforme os prêmios forem anunciados!",
     apiPath: "/api/results",
     fields: [
       { name: "year", label: "Ano", type: "number", required: true, helpText: "Ano da cerimônia" },

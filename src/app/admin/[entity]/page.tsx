@@ -236,7 +236,7 @@ export default function EntityPage({
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center mb-2">
         <h2 className="admin-heading text-2xl">{config.name}</h2>
         <button
           onClick={() => setShowForm(true)}
@@ -245,6 +245,7 @@ export default function EntityPage({
           + Novo
         </button>
       </div>
+      <p className="text-oscar-text-secondary text-sm mb-6">{config.description}</p>
 
       {loading ? (
         <p className="text-oscar-text-muted">Carregando...</p>
