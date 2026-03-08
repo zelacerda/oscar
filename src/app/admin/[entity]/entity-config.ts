@@ -1,7 +1,7 @@
 export type FieldConfig = {
   name: string;
   label: string;
-  type: "text" | "email" | "password" | "number" | "select" | "datetime-local" | "relation";
+  type: "text" | "email" | "number" | "select" | "datetime-local" | "relation";
   options?: { value: string; label: string }[];
   required?: boolean;
   helpText?: string;
@@ -36,7 +36,6 @@ export const entityConfigs: Record<string, EntityConfig> = {
     fields: [
       { name: "name", label: "Nome", type: "text", required: true, helpText: "Nome completo da pessoa" },
       { name: "email", label: "Email", type: "email", required: true, helpText: "Email pra login — tem que ser único" },
-      { name: "password", label: "Senha", type: "password", required: true, helpText: "Cria uma senha maneira pro usuário" },
       {
         name: "role",
         label: "Papel",
