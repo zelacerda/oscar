@@ -10,6 +10,10 @@ Navigation hub for project context.
 - [Workflow](./workflow.md)
 - [Tracks](./tracks.md)
 
+## Active Tracks
+
+- [ ] [pool-screens_20260308 — Telas de Bolão](./tracks/pool-screens_20260308/index.md)
+
 ## Completed Tracks
 
 - [x] [db-modeling_20260308 — Modelagem do Banco e Interface de Admin](./tracks/db-modeling_20260308/index.md)

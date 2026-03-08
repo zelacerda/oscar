@@ -1,0 +1,25 @@
+{
+  "id": "pool-screens_20260308",
+  "title": "Telas de Bolão",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T12:00:00.000Z",
+  "current_phase": 4,
+  "current_task": "4.3",
+  "phases": {
+    "total": 4,
+    "completed": 4
+  },
+  "tasks": {
+    "total": 16,
+    "completed": 16
+  },
+  "commits": [
+    "e32b3f3: feat: add pool sub-routes for members, bets and ranking (pool-screens_20260308)",
+    "5f8e6a0: feat: add pool home page /pools/[id] with access control (pool-screens_20260308)",
+    "fb881ee: feat: add bet form page /pools/[id]/bet with tier grouping (pool-screens_20260308)",
+    "d8e5997: feat: add ranking page /pools/[id]/ranking with auto-refresh (pool-screens_20260308)",
+    "995108c: fix: handle undefined userId in ranking page (pool-screens_20260308)"
+  ]
+}

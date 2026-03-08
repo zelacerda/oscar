@@ -15,4 +15,6 @@
 
 | [x] | remove-year_20260308 | Remover campo "ano" e simplificar aplicação | 2026-03-08 | 2026-03-08 |
 
+| [x] | pool-screens_20260308 | Telas de Bolão | 2026-03-08 | 2026-03-08 |
+
 <!-- Tracks registered by /conductor:new-track -->
