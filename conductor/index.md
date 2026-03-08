@@ -12,7 +12,7 @@ Navigation hub for project context.
 
 ## Active Tracks
 
-- [ ] [pool-screens_20260308 — Telas de Bolão](./tracks/pool-screens_20260308/index.md)
+_Nenhuma track ativa no momento._
 
 ## Completed Tracks
 
@@ -23,6 +23,8 @@ Navigation hub for project context.
 - [x] [home-screen_20260308 — Tela Inicial (Home)](./tracks/home-screen_20260308/index.md)
 - [x] [ptbr-polish_20260308 — Revisão PT-BR e Layout da Home](./tracks/ptbr-polish_20260308/index.md)
 - [x] [remove-year_20260308 — Remover campo "ano" e simplificar aplicação](./tracks/remove-year_20260308/index.md)
+- [x] [pool-screens_20260308 — Telas de Bolão](./tracks/pool-screens_20260308/index.md)
+- [x] [bet-form-fixes_20260308 — Ajustes no Formulário de Palpites](./tracks/bet-form-fixes_20260308/index.md)
 
 ## Getting Started
 
