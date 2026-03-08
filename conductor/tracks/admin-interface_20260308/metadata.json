@@ -1,0 +1,16 @@
+{
+  "id": "admin-interface_20260308",
+  "title": "Interface de Administração Avançada",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T00:00:00.000Z",
+  "phases": {
+    "total": 4,
+    "completed": 4
+  },
+  "tasks": {
+    "total": 17,
+    "completed": 17
+  }
+}
