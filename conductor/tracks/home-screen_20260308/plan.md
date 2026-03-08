@@ -20,7 +20,7 @@ Criar endpoint que retorna os dados necessarios para a Home: boloes que o usuari
 
 ### Verification
 
-- [ ] Endpoint retorna dados corretos para usuario com boloes e sem boloes
+- [x] Endpoint retorna dados corretos para usuario com boloes e sem boloes
 
 ## Phase 2: UI — Tela Home
 
@@ -36,9 +36,9 @@ Implementar a interface da Home com as secoes de boas-vindas, boloes e acoes.
 
 ### Verification
 
-- [ ] Tela renderiza corretamente para usuario comum (sem secao admin)
-- [ ] Tela renderiza corretamente para administrador (com atalho admin)
-- [ ] Tela renderiza corretamente para usuario sem boloes (estado vazio)
+- [x] Tela renderiza corretamente para usuario comum (sem secao admin)
+- [x] Tela renderiza corretamente para administrador (com atalho admin)
+- [x] Tela renderiza corretamente para usuario sem boloes (estado vazio)
 
 ## Phase 3: Integracao e Polish
 
@@ -52,14 +52,14 @@ Conectar redirecionamento pos-login e garantir UX consistente.
 
 ### Verification
 
-- [ ] Fluxo completo: login -> Home com dados reais do banco
-- [ ] Layout responsivo funcional em mobile e desktop
+- [x] Fluxo completo: login -> Home com dados reais do banco
+- [x] Layout responsivo funcional em mobile e desktop
 
 ## Final Verification
 
-- [ ] Todos os criterios de aceitacao atendidos
-- [ ] Testes passando (se aplicavel)
-- [ ] Pronto para review
+- [x] Todos os criterios de aceitacao atendidos
+- [x] Testes passando (se aplicavel)
+- [x] Pronto para review
 
 ---
 

@@ -22,7 +22,7 @@ Inicializar o projeto Next.js com TypeScript, configurar ORM (Prisma) e estabele
 
 ### Verification
 
-- [ ] Projeto roda localmente e conecta ao PostgreSQL sem erros
+- [x] Projeto roda localmente e conecta ao PostgreSQL sem erros
 
 ## Phase 2: Modelagem do Banco de Dados
 
@@ -41,8 +41,8 @@ Criar o schema Prisma com todas as tabelas e relacionamentos, gerar e aplicar mi
 
 ### Verification
 
-- [ ] Todas as tabelas criadas no PostgreSQL com relacionamentos corretos
-- [ ] Migration aplicada sem erros
+- [x] Todas as tabelas criadas no PostgreSQL com relacionamentos corretos
+- [x] Migration aplicada sem erros
 
 ## Phase 3: API Routes — CRUD
 
@@ -60,7 +60,7 @@ Criar API routes no Next.js para operações CRUD em todas as tabelas.
 
 ### Verification
 
-- [ ] Todas as rotas respondem corretamente (testar via curl ou similar)
+- [x] Todas as rotas respondem corretamente (testar via curl ou similar)
 
 ## Phase 4: Interface de Admin Simples
 
@@ -75,14 +75,14 @@ Criar uma interface web básica para gerenciar todos os registros do banco (CRUD
 
 ### Verification
 
-- [ ] É possível criar, visualizar, editar e excluir registros de todas as tabelas pela interface
+- [x] É possível criar, visualizar, editar e excluir registros de todas as tabelas pela interface
 
 ## Final Verification
 
-- [ ] Todos os critérios de aceitação atendidos
-- [ ] Banco PostgreSQL funcional com todas as tabelas
-- [ ] Interface de admin permite CRUD completo
-- [ ] Pronto para review
+- [x] Todos os critérios de aceitação atendidos
+- [x] Banco PostgreSQL funcional com todas as tabelas
+- [x] Interface de admin permite CRUD completo
+- [x] Pronto para review
 
 ---
 

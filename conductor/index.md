@@ -10,13 +10,15 @@ Navigation hub for project context.
 - [Workflow](./workflow.md)
 - [Tracks](./tracks.md)
 
-## Active Tracks
+## Completed Tracks
 
-- [ ] [db-modeling_20260308 — Modelagem do Banco e Interface de Admin](./tracks/db-modeling_20260308/index.md)
-- [ ] [seed-oscar-2026_20260308 — Seed de Categorias e Nomeados do Oscar 2026](./tracks/seed-oscar-2026_20260308/index.md)
-- [ ] [admin-interface_20260308 — Interface de Administração Avançada](./tracks/admin-interface_20260308/index.md)
-- [ ] [google-oauth_20260308 — Autenticação com Google OAuth](./tracks/google-oauth_20260308/index.md)
-- [ ] [home-screen_20260308 — Tela Inicial (Home)](./tracks/home-screen_20260308/index.md)
+- [x] [db-modeling_20260308 — Modelagem do Banco e Interface de Admin](./tracks/db-modeling_20260308/index.md)
+- [x] [seed-oscar-2026_20260308 — Seed de Categorias e Nomeados do Oscar 2026](./tracks/seed-oscar-2026_20260308/index.md)
+- [x] [admin-interface_20260308 — Interface de Administração Avançada](./tracks/admin-interface_20260308/index.md)
+- [x] [google-oauth_20260308 — Autenticação com Google OAuth](./tracks/google-oauth_20260308/index.md)
+- [x] [home-screen_20260308 — Tela Inicial (Home)](./tracks/home-screen_20260308/index.md)
+- [x] [ptbr-polish_20260308 — Revisão PT-BR e Layout da Home](./tracks/ptbr-polish_20260308/index.md)
+- [x] [remove-year_20260308 — Remover campo "ano" e simplificar aplicação](./tracks/remove-year_20260308/index.md)
 
 ## Getting Started
 

@@ -23,7 +23,7 @@ Instalar dependências e configurar NextAuth.js com Google Provider.
 
 ### Verification
 
-- [ ] NextAuth responde em `/api/auth/signin` com opção de login Google
+- [x] NextAuth responde em `/api/auth/signin` com opção de login Google
 
 ## Phase 2: UI de Autenticação
 
@@ -37,7 +37,7 @@ Criar páginas de login e integrar com o fluxo de navegação.
 
 ### Verification
 
-- [ ] Usuário consegue fazer login com Google e ver seu nome/foto na interface
+- [x] Usuário consegue fazer login com Google e ver seu nome/foto na interface
 
 ## Phase 3: Proteção de Rotas
 
@@ -51,9 +51,9 @@ Proteger rotas da API e páginas que exigem autenticação.
 
 ### Verification
 
-- [ ] Rotas protegidas redirecionam para login quando não autenticado
-- [ ] API retorna 401 para requests sem sessão
-- [ ] Painel admin acessível apenas para usuários ADMIN
+- [x] Rotas protegidas redirecionam para login quando não autenticado
+- [x] API retorna 401 para requests sem sessão
+- [x] Painel admin acessível apenas para usuários ADMIN
 
 ## Phase 4: Limpeza e Ajustes Finais
 
@@ -67,14 +67,14 @@ Remover código legado e ajustar integrações.
 
 ### Verification
 
-- [ ] Aplicação funciona end-to-end: login Google → navegação → logout
-- [ ] Nenhuma referência ao campo `password` restante no código
+- [x] Aplicação funciona end-to-end: login Google → navegação → logout
+- [x] Nenhuma referência ao campo `password` restante no código
 
 ## Final Verification
 
-- [ ] Todos os critérios de aceitação atendidos
-- [ ] Testes passando (se aplicável)
-- [ ] Ready for review
+- [x] Todos os critérios de aceitação atendidos
+- [x] Testes passando (se aplicável)
+- [x] Ready for review
 
 ---
 
