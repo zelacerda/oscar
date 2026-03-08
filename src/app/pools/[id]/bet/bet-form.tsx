@@ -77,7 +77,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
         <span className="text-sm text-oscar-text-secondary">
           {filledCount} / {totalCategories} categorias preenchidas
         </span>
-        <button type="submit" className="admin-btn-primary" disabled={isSaveDisabled}>
+        <button type="submit" className="admin-btn-primary disabled:cursor-not-allowed disabled:opacity-40" disabled={isSaveDisabled}>
           {saving ? "Salvando..." : "Salvar"}
         </button>
       </div>
