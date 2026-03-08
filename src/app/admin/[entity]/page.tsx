@@ -346,7 +346,7 @@ export default function EntityPage({
                 {config.columns.map((col) => (
                   <th key={col.key}>{col.label}</th>
                 ))}
-                <th className="text-right">Ações</th>
+                <th style={{ textAlign: "right" }}>Ações</th>
               </tr>
             </thead>
             <tbody>

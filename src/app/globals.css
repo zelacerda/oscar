@@ -144,7 +144,7 @@ body {
 }
 
 .admin-table th {
-  text-align: inherit;
+  text-align: left;
   padding: 0.75rem 1rem;
   font-size: 0.75rem;
   font-weight: 600;
