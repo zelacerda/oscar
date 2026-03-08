@@ -2,15 +2,19 @@
   "id": "home-screen_20260308",
   "title": "Tela Inicial (Home)",
   "type": "feature",
-  "status": "in_progress",
+  "status": "complete",
   "created": "2026-03-08T00:00:00.000Z",
   "updated": "2026-03-08T00:00:00.000Z",
   "phases": {
     "total": 3,
-    "completed": 0
+    "completed": 3
   },
   "tasks": {
-    "total": 8,
-    "completed": 0
-  }
+    "total": 10,
+    "completed": 10
+  },
+  "commits": [
+    "0ceae13: feat: add GET /api/me/pools endpoint with adminPools and memberPools (home-screen_20260308)",
+    "1400416: feat: implement Home screen with pools sections, invite copy, and admin shortcut (home-screen_20260308)"
+  ]
 }

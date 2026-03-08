@@ -3,7 +3,7 @@
 **Track ID:** home-screen_20260308
 **Spec:** [spec.md](./spec.md)
 **Created:** 2026-03-08
-**Status:** [~] In Progress
+**Status:** [x] Complete
 
 ## Overview
 
@@ -46,9 +46,9 @@ Conectar redirecionamento pos-login e garantir UX consistente.
 
 ### Tasks
 
-- [ ] Task 3.1: Verificar que o redirect pos-autenticacao aponta para `/` (ja configurado, apenas validar)
-- [ ] Task 3.2: Aplicar estilizacao consistente com o tema Oscar (cores gold, charcoal, etc.)
-- [ ] Task 3.3: Garantir responsividade mobile-first da tela Home
+- [x] Task 3.1: Verificar que o redirect pos-autenticacao aponta para `/` (ja configurado, apenas validar)
+- [x] Task 3.2: Aplicar estilizacao consistente com o tema Oscar (cores gold, charcoal, etc.)
+- [x] Task 3.3: Garantir responsividade mobile-first da tela Home
 
 ### Verification
 
