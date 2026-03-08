@@ -5,6 +5,10 @@ export type FieldConfig = {
   options?: { value: string; label: string }[];
   required?: boolean;
   helpText?: string;
+  dependsOn?: {
+    field: string;
+    queryParam: string;
+  };
   relation?: {
     apiPath: string;
     labelField: string | string[];
@@ -153,6 +157,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         type: "relation",
         required: true,
         helpText: "Indicado que essa pessoa acha que vai ganhar",
+        dependsOn: { field: "categoryId", queryParam: "categoryId" },
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],
@@ -178,6 +183,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         type: "relation",
         required: true,
         helpText: "Quem levou a estatueta nessa categoria",
+        dependsOn: { field: "categoryId", queryParam: "categoryId" },
         relation: { apiPath: "/api/nominees", labelField: ["name", "movie"] },
       },
     ],

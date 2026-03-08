@@ -45,28 +45,54 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
     Record<string, { value: string; label: string }[]>
   >({});
 
+  const fetchRelationOptions = useCallback(
+    async (field: FieldConfig, parentValue?: string) => {
+      let url = field.relation!.apiPath;
+      if (field.dependsOn && parentValue) {
+        url += `?${field.dependsOn.queryParam}=${parentValue}`;
+      }
+      const res = await fetch(url);
+      const data: Record<string, unknown>[] = await res.json();
+      return data.map((item) => ({
+        value: item.id as string,
+        label: buildLabel(item, field.relation!.labelField),
+      }));
+    },
+    []
+  );
+
   useEffect(() => {
-    const relationFields = fields.filter((f) => f.type === "relation" && f.relation);
+    const independentFields = fields.filter(
+      (f) => f.type === "relation" && f.relation && !f.dependsOn
+    );
     Promise.all(
-      relationFields.map(async (f) => {
-        const res = await fetch(f.relation!.apiPath);
-        const data: Record<string, unknown>[] = await res.json();
-        return {
-          name: f.name,
-          options: data.map((item) => ({
-            value: item.id as string,
-            label: buildLabel(item, f.relation!.labelField),
-          })),
-        };
-      })
+      independentFields.map(async (f) => ({
+        name: f.name,
+        options: await fetchRelationOptions(f),
+      }))
     ).then((results) => {
       const opts: Record<string, { value: string; label: string }[]> = {};
       results.forEach((r) => {
         opts[r.name] = r.options;
       });
-      setRelationOptions(opts);
+      setRelationOptions((prev) => ({ ...prev, ...opts }));
     });
-  }, [fields]);
+  }, [fields, fetchRelationOptions]);
+
+  useEffect(() => {
+    const dependentFields = fields.filter(
+      (f) => f.type === "relation" && f.relation && f.dependsOn
+    );
+    dependentFields.forEach(async (f) => {
+      const parentValue = formData[f.dependsOn!.field];
+      if (!parentValue) {
+        setRelationOptions((prev) => ({ ...prev, [f.name]: [] }));
+        return;
+      }
+      const options = await fetchRelationOptions(f, parentValue);
+      setRelationOptions((prev) => ({ ...prev, [f.name]: options }));
+    });
+  }, [fields, formData, fetchRelationOptions]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -79,14 +105,21 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
     onSubmit(parsed);
   }
 
+  function handleFieldChange(fieldName: string, value: string) {
+    const dependents = fields.filter((f) => f.dependsOn?.field === fieldName);
+    const updates: Record<string, string> = { [fieldName]: value };
+    dependents.forEach((f) => {
+      updates[f.name] = "";
+    });
+    setFormData((prev) => ({ ...prev, ...updates }));
+  }
+
   function renderField(field: FieldConfig) {
     if (field.type === "select") {
       return (
         <select
           value={formData[field.name]}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
-          }
+          onChange={(e) => handleFieldChange(field.name, e.target.value)}
           className="admin-input"
           required={field.required}
         >
@@ -102,16 +135,18 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
 
     if (field.type === "relation") {
       const options = relationOptions[field.name] ?? [];
+      const isDisabled = field.dependsOn && !formData[field.dependsOn.field];
       return (
         <select
           value={formData[field.name]}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
-          }
+          onChange={(e) => handleFieldChange(field.name, e.target.value)}
           className="admin-input"
           required={field.required}
+          disabled={!!isDisabled}
         >
-          <option value="">Selecione...</option>
+          <option value="">
+            {isDisabled ? "Primeiro selecione a categoria..." : "Selecione..."}
+          </option>
           {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
@@ -125,9 +160,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
       <input
         type={field.type}
         value={formData[field.name]}
-        onChange={(e) =>
-          setFormData((prev) => ({ ...prev, [field.name]: e.target.value }))
-        }
+        onChange={(e) => handleFieldChange(field.name, e.target.value)}
         className="admin-input"
         required={field.required}
       />
