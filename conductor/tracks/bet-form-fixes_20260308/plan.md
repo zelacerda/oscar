@@ -3,7 +3,7 @@
 **Track ID:** bet-form-fixes_20260308
 **Spec:** [spec.md](./spec.md)
 **Created:** 2026-03-08
-**Status:** [~] In Progress
+**Status:** [x] Complete
 
 ## Overview
 
@@ -36,18 +36,18 @@ existentes.
 
 ### Tasks
 
-- [ ] Task 2.1: Escrever script one-off em `prisma/scripts/remove-duplicate-categories.ts`
+- [x] Task 2.1: Escrever script one-off em `prisma/scripts/remove-duplicate-categories.ts`
       que deleta categorias com nome `"Melhor filme"` e `"Melhor diretor"`
       (case-sensitive), sem tocar em `"Melhor Filme"` ou `"Melhor Direção"`
-- [ ] Task 2.2: Executar o script no banco local e confirmar remoção
-- [ ] Task 2.3: Em `page.tsx`, adicionar filtro defensivo `c.nominees.length > 0`
+- [x] Task 2.2: Executar o script no banco local e confirmar remoção
+- [x] Task 2.3: Em `page.tsx`, adicionar filtro defensivo `c.nominees.length > 0`
       ao montar `categoriesByTier`, para evitar que categorias sem nomeados
       apareçam no formulário no futuro
 
 ### Verification
 
-- [ ] Formulário não exibe "Melhor filme" nem "Melhor diretor" duplicados
-- [ ] "Melhor Filme" e "Melhor Direção" continuam aparecendo normalmente
+- [x] Formulário não exibe "Melhor filme" nem "Melhor diretor" duplicados
+- [x] "Melhor Filme" e "Melhor Direção" continuam aparecendo normalmente
 
 ## Phase 3: Sub-header fixo com progresso e botão "Salvar"
 
@@ -56,33 +56,33 @@ Adicionar barra sticky abaixo do header com contador de progresso e botão
 
 ### Tasks
 
-- [ ] Task 3.1: Em `bet-form.tsx`, calcular `totalCategories` (total de
+- [x] Task 3.1: Em `bet-form.tsx`, calcular `totalCategories` (total de
       categorias) e `filledCount` (quantas têm seleção em `bets`)
-- [ ] Task 3.2: Calcular `isFirstTime`: verdadeiro se `initialBets` estava
+- [x] Task 3.2: Calcular `isFirstTime`: verdadeiro se `initialBets` estava
       vazio (nenhuma aposta prévia); nesse caso o botão só ativa quando
       `filledCount === totalCategories`
-- [ ] Task 3.3: Adicionar `<div>` sticky no topo do formulário com o texto
+- [x] Task 3.3: Adicionar `<div>` sticky no topo do formulário com o texto
       `"X / Y categorias preenchidas"` e o botão "Salvar" com lógica de
       disabled correta
-- [ ] Task 3.4: Após save bem-sucedido, redirecionar para `/pools/${poolId}`
+- [x] Task 3.4: Após save bem-sucedido, redirecionar para `/pools/${poolId}`
       com `router.push()` em vez de `router.refresh()`
-- [ ] Task 3.5: Remover o bloco de botão "Salvar" no rodapé do formulário
+- [x] Task 3.5: Remover o bloco de botão "Salvar" no rodapé do formulário
       (agora substituído pelo sub-header)
 
 ### Verification
 
-- [ ] Sub-header fixo aparece ao rolar a página
-- [ ] Contador atualiza em tempo real ao selecionar nominees
-- [ ] Botão desabilitado na primeira edição até todas as categorias serem
+- [x] Sub-header fixo aparece ao rolar a página
+- [x] Contador atualiza em tempo real ao selecionar nominees
+- [x] Botão desabilitado na primeira edição até todas as categorias serem
       preenchidas
-- [ ] Botão sempre habilitado ao editar palpites existentes
-- [ ] Salvar com sucesso redireciona para a tela inicial do bolão
+- [x] Botão sempre habilitado ao editar palpites existentes
+- [x] Salvar com sucesso redireciona para a tela inicial do bolão
 
 ## Final Verification
 
-- [ ] Todos os critérios de aceitação da spec atendidos
-- [ ] Testado em mobile (max-w-2xl, px-4)
-- [ ] Sem regressões nas outras telas do bolão
+- [x] Todos os critérios de aceitação da spec atendidos
+- [x] Testado em mobile (max-w-2xl, px-4)
+- [x] Sem regressões nas outras telas do bolão
 
 ---
 

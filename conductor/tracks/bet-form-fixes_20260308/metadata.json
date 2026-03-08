@@ -1,0 +1,24 @@
+{
+  "id": "bet-form-fixes_20260308",
+  "title": "Ajustes no Formulário de Palpites",
+  "type": "chore",
+  "status": "complete",
+  "created": "2026-03-08T00:00:00.000Z",
+  "updated": "2026-03-08T12:00:00.000Z",
+  "phases": {
+    "total": 3,
+    "completed": 3
+  },
+  "tasks": {
+    "total": 9,
+    "completed": 9
+  },
+  "commits": [
+    "17629da: fix: inverter exibição nominee para Título (Pessoa)",
+    "b7c2211: chore: mark task 1.1 complete",
+    "b81c49a: chore: add script to remove duplicate categories",
+    "51a337c: chore: update script with PrismaPg adapter; remove duplicate categories from db",
+    "c948d25: fix: filter categories with no nominees from bet form",
+    "7df05ae: feat: add sticky sub-header with progress counter and save button"
+  ]
+}
