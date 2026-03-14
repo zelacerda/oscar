@@ -1,0 +1,16 @@
+{
+  "id": "custom-pools_20260314",
+  "title": "Bolões Customizáveis e Controle de Votação",
+  "type": "feature",
+  "status": "complete",
+  "created": "2026-03-14T00:00:00.000Z",
+  "updated": "2026-03-14T00:00:00.000Z",
+  "phases": {
+    "total": 5,
+    "completed": 5
+  },
+  "tasks": {
+    "total": 18,
+    "completed": 18
+  }
+}

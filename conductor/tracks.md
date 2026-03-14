@@ -23,4 +23,6 @@
 
 | [x] | onboarding-content_20260314 | Conteúdo Explicativo e Onboarding | 2026-03-14 | 2026-03-14 |
 
+| [x] | custom-pools_20260314 | Bolões Customizáveis e Controle de Votação | 2026-03-14 | 2026-03-14 |
+
 <!-- Tracks registered by /conductor:new-track -->
