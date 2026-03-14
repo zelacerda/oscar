@@ -42,6 +42,16 @@ export default async function RootLayout({
             </header>
           )}
           {children}
+          {isLoggedIn && (
+            <footer className="py-4 text-center text-xs text-oscar-gold/40">
+              V. 2026 — Por{" "}
+              <a href="https://github.com/zelacerda" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">zelacerda</a>
+              {" "}+{" "}
+              <a href="https://claude.ai/claude-code" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">Claude Code</a>
+              {" "}— 100%{" "}
+              <a href="https://github.com/zelacerda/oscar" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">Open Source</a>
+            </footer>
+          )}
         </Providers>
       </body>
     </html>

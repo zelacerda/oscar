@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏆 Bolão do Oscar
 
-## Getting Started
+Aplicação web para criar e gerenciar bolões de apostas do Oscar entre amigos. Cada participante faz seus palpites nas categorias do prêmio e, ao final da cerimônia, o sistema calcula automaticamente quem acertou mais.
 
-First, run the development server:
+Projeto 100% open source, criado por [Zé Lacerda](https://github.com/zelacerda) com ajuda do [Claude Code](https://claude.ai/claude-code).
+
+## Funcionalidades
+
+### Autenticação
+- Login com Google (OAuth 2.0) via NextAuth.js v5
+- Sistema de papéis (usuário comum e administrador)
+- Rotas protegidas com middleware
+
+### Bolões
+- Crie bolões personalizados com nome e descrição
+- Cada bolão possui um código de convite único para compartilhar com amigos
+- Sistema de convite com link direto — funciona tanto pra quem já tem conta quanto pra novos usuários
+- Compartilhamento nativo (Web Share API) em dispositivos compatíveis, com fallback de copiar para a área de transferência
+- O criador do bolão pode travar/destravar as apostas a qualquer momento
+
+### Apostas
+- Selecione seus palpites em cada categoria do Oscar
+- Categorias organizadas por tiers: Ouro, Prata, Bronze e Base
+- Pontuação customizável por tier em cada bolão (padrão: 10, 5, 3 e 1 ponto)
+- Drag-and-drop para reorganizar categorias entre os tiers na criação do bolão
+- Apostas bloqueadas automaticamente quando o bolão é travado
+
+### Ranking e Resultados
+- Ranking em tempo real com atualização automática a cada 15 segundos
+- Pontuação calculada com base nos acertos e pesos de cada tier
+- Medalhas para os três primeiros colocados (🥇🥈🥉)
+- Destaque visual para o seu próprio nome no ranking
+- Animação de confetti dourado na tela de resultado final
+- Anúncio do vencedor com avatar, pontuação e mensagem personalizada
+
+### Painel Administrativo
+- Dashboard com estatísticas gerais (usuários, bolões, categorias, apostas, resultados)
+- Gerenciamento completo (CRUD) de usuários, bolões, categorias, indicados e resultados
+- Controle global de trava de apostas (sobrepõe travas individuais)
+- Registro dos vencedores reais de cada categoria
+- Finalização oficial dos bolões com um clique
+
+### Interface
+- Tema escuro com acentos dourados inspirado na estética do Oscar
+- Design responsivo e otimizado para celular
+- Menu de usuário com avatar do Google (ou iniciais como fallback)
+- Estados de carregamento com skeleton loaders
+- Página inicial com guia "Como funciona" em 4 passos
+- Interface 100% em português brasileiro
+
+## Stack Técnica
+
+- **Framework:** [Next.js](https://nextjs.org) 16 + React 19
+- **Autenticação:** NextAuth.js v5 + Prisma Adapter
+- **Banco de dados:** PostgreSQL + [Prisma](https://www.prisma.io) ORM
+- **Estilização:** [Tailwind CSS](https://tailwindcss.com) v4
+- **Drag-and-drop:** dnd-kit
+- **Confetti:** canvas-confetti
+
+## Instalação
+
+### Pré-requisitos
+
+- Node.js 18+
+- PostgreSQL
+- Credenciais OAuth do Google ([Console do Google Cloud](https://console.cloud.google.com))
+
+### Configuração
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/zelacerda/oscar.git
+cd oscar
+```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+3. Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```env
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/oscar"
+AUTH_SECRET="sua-chave-secreta"
+AUTH_GOOGLE_ID="seu-google-client-id"
+AUTH_GOOGLE_SECRET="seu-google-client-secret"
+```
+
+4. Execute as migrations do banco de dados:
+
+```bash
+npx prisma migrate dev
+```
+
+5. (Opcional) Popule o banco com dados iniciais:
+
+```bash
+npx prisma db seed
+```
+
+6. Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000) no navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A forma mais simples de fazer deploy é pela [Vercel](https://vercel.com), que oferece suporte nativo ao Next.js. Basta conectar o repositório e configurar as variáveis de ambiente.
 
-## Learn More
+## Licença
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este é um projeto open source. Sinta-se à vontade para usar, modificar e contribuir.
