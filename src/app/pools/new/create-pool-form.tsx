@@ -37,6 +37,12 @@ const TIER_LABEL: Record<string, string> = {
   BRONZE: "Bronze",
   BASE: "Base",
 };
+const TIER_TEXT_CLASS: Record<string, string> = {
+  GOLD: "text-oscar-gold-light",
+  SILVER: "text-gray-300",
+  BRONZE: "text-orange-300",
+  BASE: "text-slate-300",
+};
 const TIER_BADGE_CLASS: Record<string, string> = {
   GOLD: "bg-yellow-900/40 text-oscar-gold-light border border-oscar-gold/30",
   SILVER: "bg-gray-800/50 text-gray-300 border border-gray-600/30",
@@ -362,7 +368,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
             <section key={tier} className="mb-6">
               <div className="mb-2 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <h2 className="admin-heading text-base">{TIER_LABEL[tier]}</h2>
+                  <h2 className={`text-base font-bold ${TIER_TEXT_CLASS[tier]}`}>{TIER_LABEL[tier]}</h2>
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-semibold ${TIER_BADGE_CLASS[tier]}`}
                   >
