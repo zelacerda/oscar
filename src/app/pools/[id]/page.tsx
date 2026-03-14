@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import LockButton from "./lock-button";
+import CopyInviteButton from "@/components/copy-invite-button";
+import ShareInviteButton from "@/components/share-invite-button";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -72,6 +74,16 @@ export default async function PoolPage({ params }: Props) {
             <LockButton poolId={id} isLocked={isLocked} />
           )}
         </div>
+        {isAdmin && (
+          <div className="mt-4 flex items-center gap-2">
+            <CopyInviteButton inviteCode={pool.inviteCode} />
+            <ShareInviteButton
+              inviteCode={pool.inviteCode}
+              poolName={pool.name}
+              poolDescription={pool.description}
+            />
+          </div>
+        )}
       </div>
 
       <div className="gala-card p-6">

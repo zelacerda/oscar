@@ -17,7 +17,7 @@ export default function CopyInviteButton({ inviteCode }: { inviteCode: string })
       onClick={handleCopy}
       className="admin-btn-secondary text-xs"
     >
-      {copied ? "Copiado!" : "Copiar convite"}
+      {copied ? "Copiado!" : "Copiar link"}
     </button>
   );
 }

@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import CopyInviteButton from "@/components/copy-invite-button";
+import ShareInviteButton from "@/components/share-invite-button";
 
 export default async function HomePage() {
   const session = await auth();
@@ -16,6 +17,7 @@ export default async function HomePage() {
       select: {
         id: true,
         name: true,
+        description: true,
         inviteCode: true,
         isLocked: true,
         _count: { select: { members: true } },
@@ -117,8 +119,13 @@ export default async function HomePage() {
                     {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   </p>
                 </Link>
-                <div className="mt-3">
+                <div className="mt-3 flex items-center gap-2">
                   <CopyInviteButton inviteCode={pool.inviteCode} />
+                  <ShareInviteButton
+                    inviteCode={pool.inviteCode}
+                    poolName={pool.name}
+                    poolDescription={pool.description}
+                  />
                 </div>
               </div>
             ))}
