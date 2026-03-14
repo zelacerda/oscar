@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import Image from "next/image";
+import confetti from "canvas-confetti";
 
 type RankingEntry = {
   position: number;
@@ -24,6 +25,35 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
   const [isFinalized, setIsFinalized] = useState(false);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  const confettiFired = useRef(false);
+
+  useEffect(() => {
+    if (isFinalized && ranking.length > 0 && !confettiFired.current) {
+      confettiFired.current = true;
+      const duration = 3000;
+      const end = Date.now() + duration;
+      const colors = ["#D4AF37", "#FFD700", "#FFF8DC", "#B8860B"];
+
+      const frame = () => {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.6 },
+          colors,
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.6 },
+          colors,
+        });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      };
+      frame();
+    }
+  }, [isFinalized, ranking]);
 
   const fetchRanking = useCallback(async () => {
     try {
@@ -98,8 +128,10 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
             <p className="text-oscar-text-secondary text-sm mb-3">
               {winner.score} pontos · {winner.hits} acertos
             </p>
-            <p className="text-oscar-gold font-semibold">
-              Parabéns, {winner.userId === currentUserId ? "você venceu" : winner.name?.split(" ")[0] + " venceu"}!
+            <p className="text-oscar-gold font-semibold text-lg">
+              {winner.userId === currentUserId
+                ? "E o Oscar vai para... você! 🏆"
+                : `E o Oscar vai para... ${winner.name?.split(" ")[0]}! 🏆`}
             </p>
           </div>
         </div>
@@ -112,8 +144,8 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
             <tr>
               <th className="w-12 text-center">#</th>
               <th>Participante</th>
-              <th className="text-right">Pontos</th>
-              <th className="text-right">Acertos</th>
+              <th className="w-20 text-center">Pontos</th>
+              <th className="w-20 text-center">Acertos</th>
             </tr>
           </thead>
           <tbody>
@@ -159,8 +191,8 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
                       </span>
                     </div>
                   </td>
-                  <td className="text-right text-sm font-mono text-oscar-gold-light">{entry.score}</td>
-                  <td className="text-right text-sm text-oscar-text-muted">{entry.hits}</td>
+                  <td className="text-center text-sm text-oscar-gold-light"><strong>{entry.score}</strong></td>
+                  <td className="text-center text-sm text-oscar-text-secondary"><strong>{entry.hits}</strong></td>
                 </tr>
               );
             })}
