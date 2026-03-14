@@ -301,12 +301,13 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
         body: JSON.stringify({ name: name.trim(), categories }),
       });
 
-      if (!res.ok) throw new Error("Erro ao criar bolão");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.details || data.error || "Erro ao criar bolão");
 
-      const pool = await res.json();
-      router.push(`/pools/${pool.id}`);
-    } catch {
-      setError("Erro ao criar bolão. Tente novamente.");
+      router.push(`/pools/${data.id}`);
+    } catch (err) {
+      console.error("Pool creation failed:", err);
+      setError(err instanceof Error ? err.message : "Erro ao criar bolão. Tente novamente.");
       setSaving(false);
     }
   }

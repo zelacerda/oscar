@@ -31,26 +31,34 @@ export async function POST(request: NextRequest) {
 
   const userId = session!.user.id!;
 
-  const pool = await prisma.pool.create({
-    data: {
-      name: body.name,
-      adminId: userId,
-      categories: {
-        create: body.categories.map((c) => ({
-          categoryId: c.categoryId,
-          tier: c.tier as "GOLD" | "SILVER" | "BRONZE" | "BASE",
-          points: c.points,
-        })),
+  try {
+    const pool = await prisma.pool.create({
+      data: {
+        name: body.name,
+        adminId: userId,
+        categories: {
+          create: body.categories.map((c) => ({
+            categoryId: c.categoryId,
+            tier: c.tier as "GOLD" | "SILVER" | "BRONZE" | "BASE",
+            points: c.points,
+          })),
+        },
+        members: {
+          create: { userId },
+        },
       },
-      members: {
-        create: { userId },
+      include: {
+        categories: true,
+        members: true,
       },
-    },
-    include: {
-      categories: true,
-      members: true,
-    },
-  });
+    });
 
-  return NextResponse.json(pool, { status: 201 });
+    return NextResponse.json(pool, { status: 201 });
+  } catch (err) {
+    console.error("Failed to create pool:", err);
+    return NextResponse.json(
+      { error: "Erro ao criar bolão" },
+      { status: 500 }
+    );
+  }
 }

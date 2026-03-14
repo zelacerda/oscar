@@ -127,7 +127,7 @@ export default async function HomePage() {
       )}
 
       {/* Como funciona */}
-      <section className="mb-8">
+      <section className="mt-10 mb-8">
           <h2 className="admin-heading mb-4 text-lg">Como funciona</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
