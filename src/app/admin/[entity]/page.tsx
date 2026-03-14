@@ -85,8 +85,15 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
   const fetchRelationOptions = useCallback(
     async (field: FieldConfig, parentValue?: string) => {
       let url = field.relation!.apiPath;
+      const separator = url.includes("?") ? "&" : "?";
       if (field.dependsOn && parentValue) {
-        url += `?${field.dependsOn.queryParam}=${parentValue}`;
+        url += `${separator}${field.dependsOn.queryParam}=${parentValue}`;
+      }
+      // When editing, include the current value so it appears in the dropdown
+      const currentValue = initialData?.[field.name];
+      if (currentValue && !field.dependsOn) {
+        const sep = url.includes("?") ? "&" : "?";
+        url += `${sep}includeId=${currentValue}`;
       }
       const res = await fetch(url);
       const data: Record<string, unknown>[] = await res.json();
@@ -95,7 +102,7 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
         label: buildLabel(item, field.relation!.labelField),
       }));
     },
-    []
+    [initialData]
   );
 
   useEffect(() => {

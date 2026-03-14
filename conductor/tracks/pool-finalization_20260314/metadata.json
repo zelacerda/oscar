@@ -1,0 +1,16 @@
+{
+  "id": "pool-finalization_20260314",
+  "title": "Finalização de Bolões e Destaque do Vencedor",
+  "type": "feature",
+  "status": "pending",
+  "created": "2026-03-14T00:00:00.000Z",
+  "updated": "2026-03-14T00:00:00.000Z",
+  "phases": {
+    "total": 3,
+    "completed": 0
+  },
+  "tasks": {
+    "total": 9,
+    "completed": 0
+  }
+}

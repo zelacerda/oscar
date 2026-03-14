@@ -27,4 +27,6 @@
 
 | [x] | pool-invite-share_20260314 | Convites e Compartilhamento de Bolão | 2026-03-14 | 2026-03-14 |
 
+| [x] | pool-finalization_20260314 | Finalização de Bolões e Destaque do Vencedor | 2026-03-14 | 2026-03-14 |
+
 <!-- Tracks registered by /conductor:new-track -->

@@ -169,7 +169,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         type: "relation",
         required: true,
         helpText: "Categoria que já foi anunciada",
-        relation: { apiPath: "/api/categories", labelField: "name" },
+        relation: { apiPath: "/api/categories?excludeWithResults=true", labelField: "name" },
       },
       {
         name: "winnerNomineeId",

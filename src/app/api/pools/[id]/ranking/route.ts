@@ -28,6 +28,14 @@ export async function GET(_request: NextRequest, { params }: Params) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  // Check if pools are finalized
+  const globalSettings = await prisma.globalSettings.findUnique({
+    where: { id: "singleton" },
+    select: { isFinalized: true },
+  });
+
+  const isFinalized = globalSettings?.isFinalized ?? false;
+
   // Fetch custom points for this pool's categories
   const poolCategories = await prisma.poolCategory.findMany({
     where: { poolId: id },
@@ -79,5 +87,5 @@ export async function GET(_request: NextRequest, { params }: Params) {
     .sort((a, b) => b.score - a.score || b.hits - a.hits)
     .map((entry, index) => ({ position: index + 1, ...entry }));
 
-  return NextResponse.json(ranking);
+  return NextResponse.json({ ranking, isFinalized });
 }

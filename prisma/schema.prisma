@@ -94,8 +94,9 @@ model PoolCategory {
 }
 
 model GlobalSettings {
-  id         String  @id @default("singleton")
-  globalLock Boolean @default(false)
+  id          String  @id @default("singleton")
+  globalLock  Boolean @default(false)
+  isFinalized Boolean @default(false)
 }
 
 model PoolMember {
