@@ -336,7 +336,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Ex: Quem acerta mais categorias leva um prêmio!"
+          placeholder="Ex: Vamos ver quem sabe mais de cinema!"
           maxLength={200}
           className="w-full rounded-md border border-oscar-border bg-oscar-charcoal px-3 py-2 text-sm text-oscar-text-primary placeholder:text-oscar-text-muted focus:border-oscar-gold focus:outline-none"
         />
