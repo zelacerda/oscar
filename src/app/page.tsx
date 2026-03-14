@@ -58,8 +58,7 @@ export default async function HomePage() {
       </div>
 
       {/* Como funciona */}
-      {hasNoPools && (
-        <section className="mb-8">
+      <section className="mb-8">
           <h2 className="admin-heading mb-4 text-lg">Como funciona</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
@@ -72,13 +71,12 @@ export default async function HomePage() {
                 <span className="gold-gradient-text text-xl font-bold leading-none">{item.step}</span>
                 <div>
                   <p className="text-sm font-semibold text-oscar-text-primary">{item.title}</p>
-                  <p className="text-xs text-oscar-text-muted">{item.desc}</p>
+                  <p className="text-xs text-oscar-text-secondary">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
-        </section>
-      )}
+      </section>
 
       {/* Estado vazio */}
       {hasNoPools && (
@@ -104,7 +102,7 @@ export default async function HomePage() {
                 className="gala-card block p-4"
               >
                 <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
-                <p className="mt-1 text-xs text-oscar-text-muted">
+                <p className="mt-1 text-xs text-oscar-text-secondary">
                   {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   {pool.admin.name && <> &middot; por {pool.admin.name}</>}
                 </p>
@@ -126,7 +124,7 @@ export default async function HomePage() {
                   className="block transition-opacity hover:opacity-80"
                 >
                   <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
-                  <p className="mt-1 text-xs text-oscar-text-muted">
+                  <p className="mt-1 text-xs text-oscar-text-secondary">
                     {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   </p>
                 </Link>
