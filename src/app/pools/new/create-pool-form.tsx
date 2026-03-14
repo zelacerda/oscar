@@ -443,7 +443,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
         </div>
       )}
 
-      <div className="sticky bottom-4 flex items-center justify-between rounded-md border border-oscar-border-gold bg-oscar-surface-elevated px-4 py-3 shadow-sm">
+      <div className="sticky bottom-4 mx-2 flex items-center justify-between rounded-md border border-oscar-border-gold bg-oscar-surface-elevated px-4 py-3 shadow-sm">
         <span className="text-sm text-oscar-text-secondary">
           {selectedCount} categoria{selectedCount !== 1 ? "s" : ""} selecionada{selectedCount !== 1 ? "s" : ""}
         </span>

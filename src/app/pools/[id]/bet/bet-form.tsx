@@ -73,15 +73,6 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="sticky top-0 z-10 mb-6 flex items-center justify-between rounded-md border border-oscar-border-gold bg-oscar-surface-elevated px-4 py-3 shadow-sm">
-        <span className="text-sm text-oscar-text-secondary">
-          {filledCount} / {totalCategories} categorias preenchidas
-        </span>
-        <button type="submit" className="admin-btn-primary disabled:cursor-not-allowed disabled:opacity-40" disabled={isSaveDisabled}>
-          {saving ? "Salvando..." : "Salvar"}
-        </button>
-      </div>
-
       {categoriesByTier.map(({ tier, label, points, categories }) => (
         <section key={tier} className="mb-8">
           <div className="mb-3 flex items-center gap-2">
@@ -135,6 +126,15 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
           Erro ao salvar palpites. Tente novamente.
         </div>
       )}
+
+      <div className="sticky bottom-4 mx-2 flex items-center justify-between rounded-md border border-oscar-border-gold bg-oscar-surface-elevated px-4 py-3 shadow-sm">
+        <span className="text-sm text-oscar-text-secondary">
+          {filledCount} / {totalCategories} categorias preenchidas
+        </span>
+        <button type="submit" className="admin-btn-primary disabled:cursor-not-allowed disabled:opacity-40" disabled={isSaveDisabled}>
+          {saving ? "Salvando..." : "Salvar"}
+        </button>
+      </div>
     </form>
   );
 }
