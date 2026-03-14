@@ -2,9 +2,9 @@ import { signIn } from "@/lib/auth";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="admin-card w-full max-w-sm p-8 text-center">
-        <h1 className="admin-heading mb-2 text-2xl">Oscar</h1>
+    <div className="flex min-h-screen items-center justify-center bg-oscar-black">
+      <div className="gala-card w-full max-w-sm p-8 text-center">
+        <h1 className="gold-gradient-text mb-2 text-3xl font-bold tracking-tight">Oscar</h1>
         <p className="mb-8 text-sm text-oscar-text-secondary">
           Faça login para participar dos bolões
         </p>

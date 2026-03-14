@@ -49,7 +49,7 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
       <div className="admin-card p-6">
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="h-12 animate-pulse rounded-md bg-gray-100" />
+            <div key={i} className="h-12 animate-pulse rounded-md bg-oscar-dark-accent" />
           ))}
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
   }
 
   return (
-    <div className="admin-card overflow-hidden p-0">
+    <div className="gala-card overflow-hidden p-0">
       <table className="admin-table w-full">
         <thead>
           <tr>
@@ -111,7 +111,7 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
                     </span>
                   </div>
                 </td>
-                <td className="text-right text-sm font-mono">{entry.score}</td>
+                <td className="text-right text-sm font-mono text-oscar-gold-light">{entry.score}</td>
                 <td className="text-right text-sm text-oscar-text-muted">{entry.hits}</td>
               </tr>
             );

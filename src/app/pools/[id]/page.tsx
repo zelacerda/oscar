@@ -37,13 +37,13 @@ export default async function PoolPage({ params }: Props) {
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
       <div className="mb-6">
-        <Link href="/" className="text-sm text-oscar-text-secondary hover:underline">
+        <Link href="/" className="text-sm text-oscar-gold-light hover:underline">
           ← Voltar
         </Link>
       </div>
 
-      <div className="admin-card mb-6 p-6">
-        <h1 className="admin-heading text-2xl">{pool.name}</h1>
+      <div className="gala-card mb-6 p-6">
+        <h1 className="gold-gradient-text text-2xl font-bold">{pool.name}</h1>
         <p className="mt-1 text-sm text-oscar-text-secondary">
           Criado por {pool.admin.name}
           {pool.lockDate && (
@@ -71,11 +71,11 @@ export default async function PoolPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="admin-card p-6">
-        <h2 className="admin-heading mb-4 text-base">
+      <div className="gala-card p-6">
+        <h2 className="gold-text mb-4 text-base font-bold">
           Participantes ({pool.members.length})
         </h2>
-        <ul className="divide-y divide-gray-100">
+        <ul className="divide-y divide-oscar-border">
           {pool.members.map((m) => (
             <li key={m.id} className="flex items-center gap-3 py-3">
               {m.user.image ? (

@@ -341,7 +341,7 @@ export default function EntityPage({
         <div className="admin-card p-12 text-center">
           <p className="text-4xl mb-3">🎬</p>
           <p className="text-oscar-text-secondary font-medium mb-1">Nada por aqui ainda!</p>
-          <p className="text-oscar-text-muted text-sm">Bora criar o primeiro registro?</p>
+          <p className="text-oscar-text-secondary text-sm">Bora criar o primeiro registro?</p>
         </div>
       ) : (
         <div className="overflow-x-auto">

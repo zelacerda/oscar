@@ -14,10 +14,10 @@ type Props = {
 };
 
 const TIER_BADGE_CLASS: Record<string, string> = {
-  GOLD: "bg-yellow-100 text-yellow-800",
-  SILVER: "bg-gray-100 text-gray-700",
-  BRONZE: "bg-orange-100 text-orange-800",
-  BASE: "bg-slate-100 text-slate-700",
+  GOLD: "bg-yellow-900/40 text-oscar-gold-light border border-oscar-gold/30",
+  SILVER: "bg-gray-800/50 text-gray-300 border border-gray-600/30",
+  BRONZE: "bg-orange-900/40 text-orange-300 border border-orange-600/30",
+  BASE: "bg-slate-800/50 text-slate-300 border border-slate-600/30",
 };
 
 export default function BetForm({ poolId, categoriesByTier, initialBets }: Props) {
@@ -73,7 +73,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="sticky top-0 z-10 mb-6 flex items-center justify-between rounded-md border border-gray-200 bg-white px-4 py-3 shadow-sm">
+      <div className="sticky top-0 z-10 mb-6 flex items-center justify-between rounded-md border border-oscar-border-gold bg-oscar-surface-elevated px-4 py-3 shadow-sm">
         <span className="text-sm text-oscar-text-secondary">
           {filledCount} / {totalCategories} categorias preenchidas
         </span>
@@ -95,13 +95,13 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
 
           <div className="space-y-4">
             {categories.map((cat) => (
-              <div key={cat.id} className="admin-card p-4">
+              <div key={cat.id} className="gala-card p-4">
                 <p className="mb-3 text-sm font-semibold text-oscar-text-primary">{cat.name}</p>
                 <div className="space-y-2">
                   {cat.nominees.map((nom) => (
                     <label
                       key={nom.id}
-                      className="flex cursor-pointer items-start gap-3 rounded-md px-3 py-2 hover:bg-gray-50"
+                      className="flex cursor-pointer items-start gap-3 rounded-md px-3 py-2 hover:bg-oscar-gold-subtle"
                     >
                       <input
                         type="radio"
@@ -115,7 +115,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
                         {nom.movie ? (
                           <>
                             {nom.movie}
-                            <span className="ml-1 text-xs text-oscar-text-muted">({nom.name})</span>
+                            <span className="ml-1 text-xs text-oscar-text-secondary">({nom.name})</span>
                           </>
                         ) : (
                           nom.name
@@ -131,7 +131,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
       ))}
 
       {status === "error" && (
-        <div className="mb-4 rounded-md bg-red-50 px-4 py-3 text-sm text-red-800">
+        <div className="mb-4 rounded-md bg-oscar-danger-light px-4 py-3 text-sm text-oscar-danger">
           Erro ao salvar palpites. Tente novamente.
         </div>
       )}

@@ -1,34 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A0A0A;
+  --foreground: #F0ECE3;
 
-  /* Oscar Theme - Paleta de cores */
-  --oscar-gold: #C5A047;
-  --oscar-gold-light: #D4B86A;
-  --oscar-gold-dark: #A6852F;
-  --oscar-gold-subtle: #F5EDD6;
+  /* Oscar Gala Theme - Preto e Dourado */
+  --oscar-gold: #D4AF37;
+  --oscar-gold-light: #E8C84A;
+  --oscar-gold-dark: #B8960C;
+  --oscar-gold-subtle: rgba(212, 175, 55, 0.1);
 
-  --oscar-black: #0D0D0D;
-  --oscar-charcoal: #1A1A2E;
-  --oscar-dark: #16213E;
-  --oscar-dark-accent: #1F2B47;
+  --oscar-black: #0A0A0A;
+  --oscar-charcoal: #111111;
+  --oscar-dark: #161616;
+  --oscar-dark-accent: #1C1C1C;
 
-  --oscar-surface: #F8F6F1;
-  --oscar-surface-elevated: #FFFFFF;
-  --oscar-border: #E5E0D5;
-  --oscar-border-gold: #C5A04733;
+  --oscar-surface: #0E0E0E;
+  --oscar-surface-elevated: #171717;
+  --oscar-border: #2A2A2A;
+  --oscar-border-gold: rgba(212, 175, 55, 0.3);
 
-  --oscar-text-primary: #1A1A2E;
-  --oscar-text-secondary: #5A5A6E;
-  --oscar-text-muted: #8A8A9A;
+  --oscar-text-primary: #F0ECE3;
+  --oscar-text-secondary: #B0A898;
+  --oscar-text-muted: #6B6560;
   --oscar-text-on-dark: #F0ECE3;
 
-  --oscar-danger: #D94F4F;
-  --oscar-danger-light: #FDEAEA;
+  --oscar-danger: #E05555;
+  --oscar-danger-light: rgba(224, 85, 85, 0.15);
   --oscar-success: #4CAF50;
-  --oscar-success-light: #E8F5E9;
+  --oscar-success-light: rgba(76, 175, 80, 0.15);
+
+  /* Glow effects */
+  --oscar-glow-gold: 0 0 15px rgba(212, 175, 55, 0.3), 0 0 30px rgba(212, 175, 55, 0.1);
+  --oscar-glow-gold-intense: 0 0 20px rgba(212, 175, 55, 0.4), 0 0 40px rgba(212, 175, 55, 0.2), 0 0 60px rgba(212, 175, 55, 0.1);
 }
 
 @theme inline {
@@ -60,7 +64,7 @@
 }
 
 body {
-  background: var(--oscar-surface);
+  background: var(--oscar-black);
   color: var(--oscar-text-primary);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   line-height: 1.6;
@@ -72,46 +76,48 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--oscar-charcoal);
+  color: var(--oscar-gold);
 }
 
 .admin-card {
   background: var(--oscar-surface-elevated);
-  border: 1px solid var(--oscar-border);
+  border: 1px solid var(--oscar-border-gold);
   border-radius: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .admin-btn-primary {
-  background: var(--oscar-gold);
-  color: white;
+  background: linear-gradient(135deg, var(--oscar-gold), var(--oscar-gold-dark));
+  color: var(--oscar-black);
   font-weight: 600;
   padding: 0.5rem 1.25rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
-  transition: background 0.15s;
+  transition: all 0.2s;
   cursor: pointer;
+  box-shadow: var(--oscar-glow-gold);
 }
 
 .admin-btn-primary:hover {
-  background: var(--oscar-gold-dark);
+  background: linear-gradient(135deg, var(--oscar-gold-light), var(--oscar-gold));
+  box-shadow: var(--oscar-glow-gold-intense);
 }
 
 .admin-btn-secondary {
   background: transparent;
-  color: var(--oscar-text-secondary);
+  color: var(--oscar-gold-light);
   font-weight: 500;
   padding: 0.5rem 1.25rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--oscar-border);
+  border: 1px solid var(--oscar-border-gold);
   font-size: 0.875rem;
-  transition: all 0.15s;
+  transition: all 0.2s;
   cursor: pointer;
 }
 
 .admin-btn-secondary:hover {
-  background: var(--oscar-surface);
-  border-color: var(--oscar-text-muted);
+  background: var(--oscar-gold-subtle);
+  border-color: var(--oscar-gold);
 }
 
 .admin-input {
@@ -121,7 +127,7 @@ body {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
   color: var(--oscar-text-primary);
-  background: var(--oscar-surface-elevated);
+  background: var(--oscar-dark);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -140,7 +146,7 @@ body {
 }
 
 .admin-table thead {
-  background: var(--oscar-gold-subtle);
+  background: rgba(212, 175, 55, 0.08);
 }
 
 .admin-table th {
@@ -150,7 +156,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--oscar-gold-dark);
+  color: var(--oscar-gold);
 }
 
 .admin-table td {
@@ -161,5 +167,51 @@ body {
 }
 
 .admin-table tbody tr:hover {
-  background: var(--oscar-gold-subtle);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* Gala utility classes */
+.gold-glow {
+  box-shadow: var(--oscar-glow-gold);
+}
+
+.gold-glow-intense {
+  box-shadow: var(--oscar-glow-gold-intense);
+}
+
+.gold-border {
+  border: 1px solid var(--oscar-border-gold);
+}
+
+.gold-border-glow {
+  border: 1px solid var(--oscar-border-gold);
+  box-shadow: var(--oscar-glow-gold);
+}
+
+.gold-text {
+  color: var(--oscar-gold);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, var(--oscar-gold-light), var(--oscar-gold), var(--oscar-gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, var(--oscar-gold), var(--oscar-gold-dark));
+}
+
+.gala-card {
+  background: var(--oscar-surface-elevated);
+  border: 1px solid var(--oscar-border-gold);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.gala-card:hover {
+  box-shadow: var(--oscar-glow-gold);
+  border-color: var(--oscar-gold);
 }

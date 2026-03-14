@@ -1,0 +1,16 @@
+{
+  "id": "gala-theme_20260314",
+  "title": "Visual Gala Preto e Dourado",
+  "type": "chore",
+  "status": "complete",
+  "created": "2026-03-14T00:00:00.000Z",
+  "updated": "2026-03-14T00:00:00.000Z",
+  "phases": {
+    "total": 4,
+    "completed": 4
+  },
+  "tasks": {
+    "total": 10,
+    "completed": 10
+  }
+}

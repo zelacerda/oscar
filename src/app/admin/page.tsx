@@ -64,21 +64,21 @@ export default function AdminPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {stats.map((item) => (
           <Link key={item.href} href={item.href}>
-            <div className="admin-card p-5 hover:border-oscar-gold/30 transition-all hover:shadow-md cursor-pointer group">
+            <div className="gala-card p-5 cursor-pointer group">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-2xl">{item.icon}</span>
-                <span className="text-xs font-medium text-oscar-text-muted uppercase tracking-wide">
+                <span className="text-xs font-medium text-oscar-text-secondary uppercase tracking-wide">
                   {item.label}
                 </span>
               </div>
-              <div className="text-3xl font-bold text-oscar-charcoal">
+              <div className="text-3xl font-bold text-oscar-gold-light">
                 {item.count === null ? (
                   <span className="inline-block w-10 h-8 bg-oscar-border rounded animate-pulse" />
                 ) : (
                   item.count
                 )}
               </div>
-              <p className="text-xs text-oscar-text-muted mt-1">
+              <p className="text-xs text-oscar-text-secondary mt-1">
                 registros cadastrados
               </p>
             </div>

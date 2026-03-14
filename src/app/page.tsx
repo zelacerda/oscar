@@ -59,7 +59,7 @@ export default async function HomePage() {
 
       {/* Estado vazio */}
       {hasNoPools && (
-        <div className="admin-card p-8 text-center">
+        <div className="gala-card p-8 text-center">
           <p className="text-oscar-text-secondary">
             Você ainda não participa de nenhum bolão.
           </p>
@@ -78,7 +78,7 @@ export default async function HomePage() {
               <Link
                 key={pool.id}
                 href={`/pools/${pool.id}`}
-                className="admin-card block p-4 transition-shadow hover:shadow-md"
+                className="gala-card block p-4"
               >
                 <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
                 <p className="mt-1 text-xs text-oscar-text-muted">
@@ -97,7 +97,7 @@ export default async function HomePage() {
           <h2 className="admin-heading mb-4 text-lg">Bolões que Administro</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {adminPools.map((pool) => (
-              <div key={pool.id} className="admin-card p-4">
+              <div key={pool.id} className="gala-card p-4">
                 <Link
                   href={`/pools/${pool.id}`}
                   className="block transition-opacity hover:opacity-80"

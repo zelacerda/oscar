@@ -19,4 +19,6 @@
 
 | [x] | bet-form-fixes_20260308 | Ajustes no Formulário de Palpites | 2026-03-08 | 2026-03-08 |
 
+| [x] | gala-theme_20260314 | Visual Gala Preto e Dourado | 2026-03-14 | 2026-03-14 |
+
 <!-- Tracks registered by /conductor:new-track -->

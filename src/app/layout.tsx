@@ -30,8 +30,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <header className="flex items-center justify-between border-b border-oscar-border px-6 py-3">
-            <span className="admin-heading text-lg">Bolão do Oscar - versão 2026</span>
+          <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
+            <span className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar - versão 2026</span>
             <UserMenu />
           </header>
           {children}

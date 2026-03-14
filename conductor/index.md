@@ -14,6 +14,10 @@ Navigation hub for project context.
 
 _Nenhuma track ativa no momento._
 
+## Completed Tracks (Recent)
+
+- [x] [gala-theme_20260314 — Visual Gala Preto e Dourado](./tracks/gala-theme_20260314/index.md)
+
 ## Completed Tracks
 
 - [x] [db-modeling_20260308 — Modelagem do Banco e Interface de Admin](./tracks/db-modeling_20260308/index.md)
