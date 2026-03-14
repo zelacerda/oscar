@@ -47,7 +47,7 @@ export default async function RootLayout({
               V. 2026 — Por{" "}
               <a href="https://github.com/zelacerda" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">zelacerda</a>
               {" "}+{" "}
-              <a href="https://claude.ai/claude-code" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">Claude Code</a>
+              <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">Claude Code</a>
               {" "}— 100%{" "}
               <a href="https://github.com/zelacerda/oscar" target="_blank" rel="noopener noreferrer" className="underline hover:text-oscar-gold/60">Open Source</a>
             </footer>
