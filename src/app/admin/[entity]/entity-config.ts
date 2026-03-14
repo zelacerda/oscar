@@ -97,7 +97,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   categories: {
     name: "Categorias",
-    description: "As categorias do Oscar desse ano. Cada uma tem um nível de importância que define a pontuação.",
+    description: "As categorias do Oscar desse ano. A importância aqui é o padrão — cada dono de bolão pode personalizar os tiers no seu próprio bolão.",
     apiPath: "/api/categories",
     fields: [
       { name: "name", label: "Nome da Categoria", type: "text", required: true, helpText: "Ex: Melhor Filme, Melhor Diretor..." },
@@ -106,7 +106,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Importância",
         type: "select",
         required: true,
-        helpText: "Quanto mais importante, mais pontos vale o acerto",
+        helpText: "Valor padrão — donos de bolão podem personalizar",
         options: [
           { value: "GOLD", label: "Ouro (10 pts)" },
           { value: "SILVER", label: "Prata (5 pts)" },
@@ -117,7 +117,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
     ],
     columns: [
       { key: "name", label: "Categoria" },
-      { key: "tier", label: "Importância" },
+      { key: "tier", label: "Importância (padrão)" },
     ],
   },
   bets: {
