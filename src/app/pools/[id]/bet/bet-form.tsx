@@ -13,6 +13,12 @@ type Props = {
   initialBets: Record<string, string>;
 };
 
+const TIER_TEXT_CLASS: Record<string, string> = {
+  GOLD: "!text-oscar-gold-light",
+  SILVER: "!text-gray-300",
+  BRONZE: "!text-orange-300",
+  BASE: "!text-slate-300",
+};
 const TIER_BADGE_CLASS: Record<string, string> = {
   GOLD: "bg-yellow-900/40 text-oscar-gold-light border border-oscar-gold/30",
   SILVER: "bg-gray-800/50 text-gray-300 border border-gray-600/30",
@@ -76,7 +82,7 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
       {categoriesByTier.map(({ tier, label, points, categories }) => (
         <section key={tier} className="mb-8">
           <div className="mb-3 flex items-center gap-2">
-            <h2 className="admin-heading text-base">{label}</h2>
+            <h2 className={`admin-heading text-lg ${TIER_TEXT_CLASS[tier]}`}>{label}</h2>
             <span
               className={`rounded-full px-2 py-0.5 text-xs font-semibold ${TIER_BADGE_CLASS[tier]}`}
             >
@@ -87,12 +93,12 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
           <div className="space-y-4">
             {categories.map((cat) => (
               <div key={cat.id} className="gala-card p-4">
-                <p className="mb-3 text-sm font-semibold text-oscar-text-primary">{cat.name}</p>
+                <p className="mb-3 text-base font-semibold text-oscar-text-primary">{cat.name}</p>
                 <div className="space-y-2">
                   {cat.nominees.map((nom) => (
                     <label
                       key={nom.id}
-                      className="flex cursor-pointer items-start gap-3 rounded-md px-3 py-2 hover:bg-oscar-gold-subtle"
+                      className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 hover:bg-oscar-gold-subtle"
                     >
                       <input
                         type="radio"
@@ -100,13 +106,14 @@ export default function BetForm({ poolId, categoriesByTier, initialBets }: Props
                         value={nom.id}
                         checked={bets[cat.id] === nom.id}
                         onChange={() => handleSelect(cat.id, nom.id)}
-                        className="mt-0.5 accent-oscar-gold"
+                        className="h-5 w-5 accent-oscar-gold"
                       />
-                      <span className="text-sm text-oscar-text-primary">
+                      <span className="text-base text-oscar-text-primary">
                         {nom.movie ? (
                           <>
                             {nom.movie}
-                            <span className="ml-1 text-xs text-oscar-text-secondary">({nom.name})</span>
+                            <br />
+                            <span className="text-sm text-oscar-text-secondary">{nom.name}</span>
                           </>
                         ) : (
                           nom.name

@@ -106,7 +106,7 @@ function DraggableCategory({
       >
         ⠿
       </span>
-      <span className="flex-1 text-sm text-oscar-text-primary">{cat.name}</span>
+      <span className="flex-1 text-base text-oscar-text-primary">{cat.name}</span>
       {/* Arrow buttons for mobile */}
       <div className="flex gap-0.5">
         <button
@@ -368,7 +368,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
             <section key={tier} className="mb-6">
               <div className="mb-2 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <h2 className={`text-base font-bold ${TIER_TEXT_CLASS[tier]}`}>{TIER_LABEL[tier]}</h2>
+                  <h2 className={`text-lg font-bold ${TIER_TEXT_CLASS[tier]}`}>{TIER_LABEL[tier]}</h2>
                   <span
                     className={`rounded-full px-2 py-0.5 text-xs font-semibold ${TIER_BADGE_CLASS[tier]}`}
                   >
