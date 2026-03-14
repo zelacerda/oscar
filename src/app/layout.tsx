@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Providers>
           <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
-            <span className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar - versão 2026</span>
+            <span className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar 2026</span>
             <UserMenu />
           </header>
           {children}

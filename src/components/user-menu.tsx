@@ -21,14 +21,14 @@ export default async function UserMenu() {
         />
       )}
       <span className="text-sm font-medium text-oscar-text-primary">
-        {session.user.name}
+        {session.user.name?.split(" ")[0]}
       </span>
       {isAdmin && (
         <Link
           href="/admin"
           className="admin-btn-secondary text-xs"
         >
-          Painel de Administração
+          Admin
         </Link>
       )}
       <form
