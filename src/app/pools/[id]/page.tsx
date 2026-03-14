@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import LockButton from "./lock-button";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -49,7 +50,7 @@ export default async function PoolPage({ params }: Props) {
           {isLocked ? "Apostas encerradas" : "Apostas abertas"}
         </p>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-6 flex items-center gap-3">
           {!isLocked && (
             <Link href={`/pools/${id}/bet`} className="admin-btn-primary">
               Editar Palpite
@@ -59,6 +60,9 @@ export default async function PoolPage({ params }: Props) {
             <Link href={`/pools/${id}/ranking`} className="admin-btn-primary">
               Ver Ranking
             </Link>
+          )}
+          {isAdmin && (
+            <LockButton poolId={id} isLocked={isLocked} />
           )}
         </div>
       </div>

@@ -30,8 +30,15 @@ export default function AdminPage() {
   const [stats, setStats] = useState<DashboardStats[]>(
     dashboardItems.map((item) => ({ ...item, count: null }))
   );
+  const [globalLock, setGlobalLock] = useState<boolean | null>(null);
+  const [lockLoading, setLockLoading] = useState(false);
 
   useEffect(() => {
+    fetch("/api/admin/global-lock")
+      .then((res) => res.json())
+      .then((data: { globalLock: boolean }) => setGlobalLock(data.globalLock))
+      .catch(() => setGlobalLock(false));
+
     dashboardItems.forEach((item, index) => {
       fetch(apiMap[item.label])
         .then((res) => res.json())
@@ -59,6 +66,54 @@ export default function AdminPage() {
         <p className="text-oscar-text-secondary">
           Bem-vindo ao admin do Oscar! Aqui você gerencia tudo do bolão.
         </p>
+      </div>
+
+      {/* Global Lock */}
+      <div className="gala-card mb-8 p-5">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-semibold text-oscar-text-primary">
+              Controle Global de Votações
+            </h3>
+            <p className="mt-1 text-xs text-oscar-text-secondary">
+              {globalLock === null
+                ? "Carregando..."
+                : globalLock
+                  ? "Todas as votações estão encerradas. Nenhum bolão pode receber apostas."
+                  : "Votações abertas. Cada dono de bolão controla seu próprio bolão."}
+            </p>
+          </div>
+          <button
+            disabled={globalLock === null || lockLoading}
+            onClick={async () => {
+              setLockLoading(true);
+              try {
+                const res = await fetch("/api/admin/global-lock", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ globalLock: !globalLock }),
+                });
+                if (res.ok) {
+                  const data = await res.json();
+                  setGlobalLock(data.globalLock);
+                }
+              } finally {
+                setLockLoading(false);
+              }
+            }}
+            className={`whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium transition ${
+              globalLock
+                ? "bg-green-700 text-white hover:bg-green-600"
+                : "bg-oscar-danger text-white hover:bg-red-700"
+            } disabled:opacity-50`}
+          >
+            {lockLoading
+              ? "..."
+              : globalLock
+                ? "Reabrir Votações"
+                : "Encerrar Todas"}
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
