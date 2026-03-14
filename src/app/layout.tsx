@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oscar",
+  title: "Bolão do Oscar",
   description: "Bolões do Oscar entre amigos",
 };
 
