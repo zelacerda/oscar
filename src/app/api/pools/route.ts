@@ -14,15 +14,42 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const { error } = await requireAuth();
+  const { session, error } = await requireAuth();
   if (error) return error;
 
-  const body = await request.json();
+  const body: {
+    name: string;
+    categories: { categoryId: string; points: number }[];
+  } = await request.json();
+
+  if (!body.name || !body.categories?.length) {
+    return NextResponse.json(
+      { error: "Name and at least one category are required" },
+      { status: 400 }
+    );
+  }
+
+  const userId = session!.user.id!;
+
   const pool = await prisma.pool.create({
     data: {
       name: body.name,
-      adminId: body.adminId,
+      adminId: userId,
+      categories: {
+        create: body.categories.map((c) => ({
+          categoryId: c.categoryId,
+          points: c.points,
+        })),
+      },
+      members: {
+        create: { userId },
+      },
+    },
+    include: {
+      categories: true,
+      members: true,
     },
   });
+
   return NextResponse.json(pool, { status: 201 });
 }
