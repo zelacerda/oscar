@@ -1,15 +1,18 @@
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { auth, signIn } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
-import { signIn } from "@/lib/auth";
 import AcceptInvite from "./accept-invite";
 
-type Props = { params: Promise<{ code: string }> };
+type Props = {
+  params: Promise<{ code: string }>;
+  searchParams: Promise<{ [key: string]: string | undefined }>;
+};
 
-export default async function InvitePage({ params }: Props) {
+export default async function InvitePage({ params, searchParams }: Props) {
   const { code } = await params;
+  const { accept } = await searchParams;
 
   const pool = await prisma.pool.findUnique({
     where: { inviteCode: code },
@@ -27,15 +30,22 @@ export default async function InvitePage({ params }: Props) {
   const session = await auth();
   const isLoggedIn = !!session?.user;
 
-  // If logged in, check if already a member
   if (isLoggedIn) {
+    const userId = session!.user.id!;
+
     const existing = await prisma.poolMember.findUnique({
-      where: {
-        poolId_userId: { poolId: pool.id, userId: session!.user.id! },
-      },
+      where: { poolId_userId: { poolId: pool.id, userId } },
     });
 
     if (existing) {
+      redirect(`/pools/${pool.id}`);
+    }
+
+    // User just logged in from the invite flow — accept automatically
+    if (accept === "1") {
+      await prisma.poolMember.create({
+        data: { poolId: pool.id, userId },
+      });
       redirect(`/pools/${pool.id}`);
     }
   }
@@ -71,7 +81,9 @@ export default async function InvitePage({ params }: Props) {
             <form
               action={async () => {
                 "use server";
-                await signIn("google", { redirectTo: `/invite/${code}` });
+                await signIn("google", {
+                  redirectTo: `/invite/${code}?accept=1`,
+                });
               }}
             >
               <button
