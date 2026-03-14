@@ -12,7 +12,7 @@ Navigation hub for project context.
 
 ## Active Tracks
 
-_Nenhuma track ativa no momento._
+- [ ] [onboarding-content_20260314 — Conteúdo Explicativo e Onboarding](./tracks/onboarding-content_20260314/index.md)
 
 ## Completed Tracks (Recent)
 

@@ -2,12 +2,18 @@ import { signIn } from "@/lib/auth";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-oscar-black">
+    <div className="flex min-h-screen items-center justify-center bg-oscar-black px-4">
       <div className="gala-card w-full max-w-sm p-8 text-center">
-        <h1 className="gold-gradient-text mb-2 text-3xl font-bold tracking-tight">Oscar</h1>
-        <p className="mb-8 text-sm text-oscar-text-secondary">
-          Faça login para participar dos bolões
+        <h1 className="gold-gradient-text mb-1 text-4xl font-bold tracking-tight">Oscar</h1>
+        <p className="gold-text mb-6 text-sm font-medium">
+          O bolão mais glamouroso entre amigos
         </p>
+
+        <p className="mb-8 text-sm leading-relaxed text-oscar-text-secondary">
+          Chega de planilha e grupo no WhatsApp! Crie seu bolão do Oscar,
+          convide a galera e descubra quem manja mais de cinema.
+        </p>
+
         <form
           action={async () => {
             "use server";

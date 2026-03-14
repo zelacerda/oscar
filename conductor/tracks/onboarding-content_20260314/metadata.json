@@ -1,0 +1,16 @@
+{
+  "id": "onboarding-content_20260314",
+  "title": "Conteúdo Explicativo e Onboarding",
+  "type": "chore",
+  "status": "pending",
+  "created": "2026-03-14T00:00:00.000Z",
+  "updated": "2026-03-14T00:00:00.000Z",
+  "phases": {
+    "total": 2,
+    "completed": 0
+  },
+  "tasks": {
+    "total": 6,
+    "completed": 0
+  }
+}
