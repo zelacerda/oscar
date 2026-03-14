@@ -52,6 +52,16 @@ function renderCellValue(col: string, rawValue: string, item?: Record<string, un
     }
     return name !== "—" ? name : rawValue;
   }
+  if (col === "isLocked") {
+    const locked = rawValue === "true";
+    return (
+      <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold border ${
+        locked ? "bg-red-100 text-red-800 border-red-300" : "bg-green-100 text-green-800 border-green-300"
+      }`}>
+        {locked ? "Encerrado" : "Aberto"}
+      </span>
+    );
+  }
   if (col === "role") {
     const isAdmin = rawValue === "ADMIN";
     return (
