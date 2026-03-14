@@ -88,6 +88,11 @@ export default async function BetPage({ params }: Props) {
       <div className="mb-6">
         <h1 className="admin-heading text-2xl">Editar Palpites</h1>
         <p className="mt-1 text-sm text-oscar-text-secondary">{pool.name}</p>
+        <p className="mt-3 text-sm text-oscar-text-secondary">
+          Você pode alterar seus palpites livremente enquanto o bolão estiver aberto para edição.
+          As categorias possuem pontuações diferentes, definidas pelo administrador do bolão — fique
+          de olho nos pontos de cada tier!
+        </p>
       </div>
 
       <BetForm poolId={id} categoriesByTier={categoriesByTier} initialBets={initialBets} />
