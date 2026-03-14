@@ -17,7 +17,7 @@ export default async function HomePage() {
         id: true,
         name: true,
         inviteCode: true,
-        lockDate: true,
+        isLocked: true,
         _count: { select: { members: true } },
       },
       orderBy: { createdAt: "desc" },
@@ -32,7 +32,7 @@ export default async function HomePage() {
           select: {
             id: true,
             name: true,
-            lockDate: true,
+            isLocked: true,
             admin: { select: { name: true } },
             _count: { select: { members: true } },
           },

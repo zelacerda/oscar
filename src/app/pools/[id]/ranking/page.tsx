@@ -15,14 +15,12 @@ export default async function RankingPage({ params }: Props) {
 
   const pool = await prisma.pool.findUnique({
     where: { id },
-    select: { id: true, name: true, lockDate: true, adminId: true },
+    select: { id: true, name: true, isLocked: true, adminId: true },
   });
 
   if (!pool) redirect("/");
 
-  const now = new Date();
-  const isLocked = pool.lockDate ? now >= pool.lockDate : false;
-  if (!isLocked) redirect(`/pools/${id}`);
+  if (!pool.isLocked) redirect(`/pools/${id}`);
 
   const member = await prisma.poolMember.findFirst({
     where: { poolId: id, userId },

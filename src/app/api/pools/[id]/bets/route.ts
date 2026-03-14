@@ -38,12 +38,15 @@ export async function PUT(request: NextRequest, { params }: Params) {
   const { id } = await params;
   const userId = session!.user.id;
 
-  const pool = await prisma.pool.findUnique({ where: { id }, select: { lockDate: true } });
+  const [pool, globalSettings] = await Promise.all([
+    prisma.pool.findUnique({ where: { id }, select: { isLocked: true } }),
+    prisma.globalSettings.findUnique({ where: { id: "singleton" } }),
+  ]);
   if (!pool) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  if (pool.lockDate && new Date() >= pool.lockDate) {
+  if (pool.isLocked || globalSettings?.globalLock) {
     return NextResponse.json({ error: "Forbidden: betting is closed" }, { status: 403 });
   }
 

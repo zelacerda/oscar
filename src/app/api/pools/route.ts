@@ -21,7 +21,6 @@ export async function POST(request: NextRequest) {
   const pool = await prisma.pool.create({
     data: {
       name: body.name,
-      lockDate: new Date(body.lockDate),
       adminId: body.adminId,
     },
   });

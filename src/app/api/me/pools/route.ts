@@ -15,7 +15,7 @@ export async function GET() {
         id: true,
         name: true,
         inviteCode: true,
-        lockDate: true,
+        isLocked: true,
         _count: { select: { members: true } },
       },
       orderBy: { createdAt: "desc" },
@@ -30,7 +30,7 @@ export async function GET() {
           select: {
             id: true,
             name: true,
-            lockDate: true,
+            isLocked: true,
             admin: { select: { name: true } },
             _count: { select: { members: true } },
           },

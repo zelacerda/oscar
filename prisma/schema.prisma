@@ -67,14 +67,33 @@ model Pool {
   id         String   @id @default(cuid())
   name       String
   inviteCode String   @unique @default(cuid())
-  lockDate   DateTime
+  isLocked   Boolean  @default(false)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
   adminId String
   admin   User   @relation(fields: [adminId], references: [id])
 
-  members PoolMember[]
+  members    PoolMember[]
+  categories PoolCategory[]
+}
+
+model PoolCategory {
+  id     String @id @default(cuid())
+  points Int
+
+  poolId String
+  pool   Pool   @relation(fields: [poolId], references: [id], onDelete: Cascade)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  @@unique([poolId, categoryId])
+}
+
+model GlobalSettings {
+  id         String  @id @default("singleton")
+  globalLock Boolean @default(false)
 }
 
 model PoolMember {
@@ -98,9 +117,10 @@ model Category {
   name String @unique
   tier Tier
 
-  nominees Nominee[]
-  bets     Bet[]
-  result   Result?
+  nominees       Nominee[]
+  bets           Bet[]
+  result         Result?
+  poolCategories PoolCategory[]
 }
 
 model Nominee {

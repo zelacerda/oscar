@@ -30,7 +30,6 @@ export async function PUT(request: NextRequest, { params }: Params) {
     where: { id },
     data: {
       name: body.name,
-      lockDate: body.lockDate ? new Date(body.lockDate) : undefined,
       adminId: body.adminId,
     },
   });

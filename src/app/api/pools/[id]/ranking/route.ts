@@ -20,7 +20,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
 
   const pool = await prisma.pool.findUnique({
     where: { id },
-    select: { adminId: true, lockDate: true },
+    select: { adminId: true },
   });
 
   if (!pool) {

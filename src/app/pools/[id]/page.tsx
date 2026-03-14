@@ -31,8 +31,7 @@ export default async function PoolPage({ params }: Props) {
 
   if (!isMember && !isAdmin) redirect("/");
 
-  const now = new Date();
-  const isLocked = pool.lockDate ? now >= pool.lockDate : false;
+  const isLocked = pool.isLocked;
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
@@ -46,15 +45,8 @@ export default async function PoolPage({ params }: Props) {
         <h1 className="gold-gradient-text text-2xl font-bold">{pool.name}</h1>
         <p className="mt-1 text-sm text-oscar-text-secondary">
           Criado por {pool.admin.name}
-          {pool.lockDate && (
-            <>
-              {" "}
-              &middot;{" "}
-              {isLocked
-                ? "Apostas encerradas"
-                : `Apostas abertas até ${new Date(pool.lockDate).toLocaleString("pt-BR")}`}
-            </>
-          )}
+          {" "}&middot;{" "}
+          {isLocked ? "Apostas encerradas" : "Apostas abertas"}
         </p>
 
         <div className="mt-6 flex gap-3">
