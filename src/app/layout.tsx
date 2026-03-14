@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./providers";
+import Link from "next/link";
 import UserMenu from "@/components/user-menu";
 import "./globals.css";
 
@@ -31,7 +32,7 @@ export default function RootLayout({
       >
         <Providers>
           <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
-            <span className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar 2026</span>
+            <Link href="/" className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar 2026</Link>
             <UserMenu />
           </header>
           {children}
