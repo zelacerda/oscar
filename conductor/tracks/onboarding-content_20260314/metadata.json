@@ -2,15 +2,19 @@
   "id": "onboarding-content_20260314",
   "title": "Conteúdo Explicativo e Onboarding",
   "type": "chore",
-  "status": "pending",
+  "status": "complete",
   "created": "2026-03-14T00:00:00.000Z",
   "updated": "2026-03-14T00:00:00.000Z",
   "phases": {
     "total": 2,
-    "completed": 0
+    "completed": 2
   },
   "tasks": {
     "total": 6,
-    "completed": 0
-  }
+    "completed": 6
+  },
+  "commits": [
+    "9c59623: chore: add onboarding content to login screen (onboarding-content_20260314)",
+    "2f32c03: chore: add \"como funciona\" section to home page (onboarding-content_20260314)"
+  ]
 }

@@ -12,10 +12,11 @@ Navigation hub for project context.
 
 ## Active Tracks
 
-- [ ] [onboarding-content_20260314 — Conteúdo Explicativo e Onboarding](./tracks/onboarding-content_20260314/index.md)
+_Nenhuma track ativa no momento._
 
 ## Completed Tracks (Recent)
 
+- [x] [onboarding-content_20260314 — Conteúdo Explicativo e Onboarding](./tracks/onboarding-content_20260314/index.md)
 - [x] [gala-theme_20260314 — Visual Gala Preto e Dourado](./tracks/gala-theme_20260314/index.md)
 
 ## Completed Tracks

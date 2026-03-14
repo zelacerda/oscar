@@ -21,6 +21,6 @@
 
 | [x] | gala-theme_20260314 | Visual Gala Preto e Dourado | 2026-03-14 | 2026-03-14 |
 
-| [~] | onboarding-content_20260314 | Conteúdo Explicativo e Onboarding | 2026-03-14 | 2026-03-14 |
+| [x] | onboarding-content_20260314 | Conteúdo Explicativo e Onboarding | 2026-03-14 | 2026-03-14 |
 
 <!-- Tracks registered by /conductor:new-track -->
