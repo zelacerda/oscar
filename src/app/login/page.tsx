@@ -1,10 +1,19 @@
+import Image from "next/image";
 import { signIn } from "@/lib/auth";
+import logo from "@/assets/logo.png";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-oscar-black px-4">
-      <div className="gala-card w-full max-w-sm p-8 text-center">
-        <h1 className="gold-gradient-text mb-1 text-4xl font-bold tracking-tight">Oscar</h1>
+    <div className="flex min-h-screen items-start justify-center bg-oscar-black px-4 pt-16">
+      <div className="w-full max-w-sm text-center">
+        <Image
+          src={logo}
+          alt="Oscars"
+          className="mx-auto mb-10 w-full"
+          priority
+        />
+      <div className="gala-card w-full p-8 text-center">
+        <h1 className="gold-gradient-text mb-1 font-futura text-4xl font-bold tracking-tight">Bolão do Oscar 2026</h1>
         <p className="gold-text mb-6 text-sm font-medium">
           O bolão mais glamouroso entre amigos
         </p>
@@ -45,6 +54,7 @@ export default function LoginPage() {
             Entrar com Google
           </button>
         </form>
+      </div>
       </div>
     </div>
   );
