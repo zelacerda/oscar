@@ -2,13 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/api-auth";
 
-const TIER_POINTS: Record<string, number> = {
-  GOLD: 10,
-  SILVER: 5,
-  BRONZE: 3,
-  BASE: 1,
-};
-
 type Params = { params: Promise<{ id: string }> };
 
 export async function GET(_request: NextRequest, { params }: Params) {
@@ -35,6 +28,14 @@ export async function GET(_request: NextRequest, { params }: Params) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
+  // Fetch custom points for this pool's categories
+  const poolCategories = await prisma.poolCategory.findMany({
+    where: { poolId: id },
+    select: { categoryId: true, points: true },
+  });
+
+  const pointsMap = new Map(poolCategories.map((pc) => [pc.categoryId, pc.points]));
+
   // Fetch all results (categories that have a winner)
   const results = await prisma.result.findMany({
     select: { categoryId: true, winnerNomineeId: true },
@@ -47,16 +48,12 @@ export async function GET(_request: NextRequest, { params }: Params) {
     where: { poolId: id },
     include: {
       user: { select: { id: true, name: true, image: true } },
-      bets: {
-        include: {
-          category: { select: { tier: true } },
-        },
-      },
+      bets: true,
     },
     orderBy: { createdAt: "asc" },
   });
 
-  // Calculate scores
+  // Calculate scores using custom pool points
   const ranking = members
     .map((m) => {
       let score = 0;
@@ -65,7 +62,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
       for (const bet of m.bets) {
         const winner = resultMap.get(bet.categoryId);
         if (winner && winner === bet.nomineeId) {
-          const points = TIER_POINTS[bet.category.tier] ?? 1;
+          const points = pointsMap.get(bet.categoryId) ?? 1;
           score += points;
           hits++;
         }

@@ -13,12 +13,6 @@ const TIER_LABEL: Record<string, string> = {
   BRONZE: "Bronze",
   BASE: "Base",
 };
-const TIER_POINTS: Record<string, number> = {
-  GOLD: 10,
-  SILVER: 5,
-  BRONZE: 3,
-  BASE: 1,
-};
 
 export default async function BetPage({ params }: Props) {
   const session = await auth();
@@ -42,12 +36,14 @@ export default async function BetPage({ params }: Props) {
 
   if (!member) redirect("/");
 
-  const [categories, existingBets] = await Promise.all([
-    prisma.category.findMany({
+  const [poolCategories, existingBets] = await Promise.all([
+    prisma.poolCategory.findMany({
+      where: { poolId: id },
       include: {
-        nominees: { orderBy: { name: "asc" } },
+        category: {
+          include: { nominees: { orderBy: { name: "asc" } } },
+        },
       },
-      orderBy: { name: "asc" },
     }),
     prisma.bet.findMany({
       where: { poolMemberId: member.id },
@@ -55,12 +51,24 @@ export default async function BetPage({ params }: Props) {
     }),
   ]);
 
-  const categoriesByTier = TIER_ORDER.map((tier) => ({
-    tier,
-    label: TIER_LABEL[tier],
-    points: TIER_POINTS[tier],
-    categories: categories.filter((c) => c.tier === tier && c.nominees.length > 0),
-  })).filter((g) => g.categories.length > 0);
+  // Group by tier, using custom points from PoolCategory
+  const pointsByCategory = new Map(poolCategories.map((pc) => [pc.categoryId, pc.points]));
+
+  const categoriesByTier = TIER_ORDER.map((tier) => {
+    const cats = poolCategories
+      .filter((pc) => pc.category.tier === tier && pc.category.nominees.length > 0)
+      .map((pc) => pc.category);
+
+    // Use the custom points (all categories in a tier may have different points now)
+    const firstPoints = cats.length > 0 ? (pointsByCategory.get(cats[0].id) ?? 1) : 0;
+
+    return {
+      tier,
+      label: TIER_LABEL[tier],
+      points: firstPoints,
+      categories: cats,
+    };
+  }).filter((g) => g.categories.length > 0);
 
   const initialBets: Record<string, string> = {};
   for (const bet of existingBets) {
