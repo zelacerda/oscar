@@ -80,6 +80,7 @@ model Pool {
 
 model PoolCategory {
   id     String @id @default(cuid())
+  tier   Tier
   points Int
 
   poolId String

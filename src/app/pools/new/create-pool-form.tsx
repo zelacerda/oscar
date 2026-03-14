@@ -290,6 +290,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
       .filter((c) => selected[c.id])
       .map((c) => ({
         categoryId: c.id,
+        tier: categoryTier[c.id],
         points: tierPoints[categoryTier[c.id]] ?? 1,
       }));
 

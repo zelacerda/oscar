@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
 
   const body: {
     name: string;
-    categories: { categoryId: string; points: number }[];
+    categories: { categoryId: string; tier: string; points: number }[];
   } = await request.json();
 
   if (!body.name || !body.categories?.length) {
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       categories: {
         create: body.categories.map((c) => ({
           categoryId: c.categoryId,
+          tier: c.tier as "GOLD" | "SILVER" | "BRONZE" | "BASE",
           points: c.points,
         })),
       },

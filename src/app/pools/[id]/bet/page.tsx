@@ -55,16 +55,14 @@ export default async function BetPage({ params }: Props) {
     }),
   ]);
 
-  // Group by tier, using custom points from PoolCategory
-  const pointsByCategory = new Map(poolCategories.map((pc) => [pc.categoryId, pc.points]));
-
+  // Group by pool-specific tier, using custom points from PoolCategory
   const categoriesByTier = TIER_ORDER.map((tier) => {
-    const cats = poolCategories
-      .filter((pc) => pc.category.tier === tier && pc.category.nominees.length > 0)
-      .map((pc) => pc.category);
+    const pcs = poolCategories.filter(
+      (pc) => pc.tier === tier && pc.category.nominees.length > 0,
+    );
+    const cats = pcs.map((pc) => pc.category);
 
-    // Use the custom points (all categories in a tier may have different points now)
-    const firstPoints = cats.length > 0 ? (pointsByCategory.get(cats[0].id) ?? 1) : 0;
+    const firstPoints = pcs.length > 0 ? pcs[0].points : 0;
 
     return {
       tier,
