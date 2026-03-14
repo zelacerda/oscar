@@ -50,7 +50,7 @@ export default async function InvitePage({ params }: Props) {
           priority
         />
         <div className="gala-card w-full p-8 text-center">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-oscar-text-muted">
+          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-oscar-text-secondary">
             Você foi convidado para
           </p>
           <h1 className="gold-gradient-text mb-1 font-futura text-2xl font-bold tracking-tight">
@@ -61,7 +61,7 @@ export default async function InvitePage({ params }: Props) {
               {pool.description}
             </p>
           )}
-          <p className="mb-6 text-xs text-oscar-text-muted">
+          <p className="mb-6 text-xs text-oscar-text-secondary">
             Criado por {pool.admin.name} &middot; {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
           </p>
 
