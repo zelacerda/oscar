@@ -29,13 +29,28 @@ const tierLabels: Record<string, string> = {
   BASE: "Base",
 };
 
-function renderCellValue(col: string, rawValue: string): React.ReactNode {
+function renderCellValue(col: string, rawValue: string, item?: Record<string, unknown>): React.ReactNode {
   if (col === "tier" && tierStyles[rawValue]) {
     return (
       <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold border ${tierStyles[rawValue]}`}>
         {tierLabels[rawValue]}
       </span>
     );
+  }
+  if (col === "winnerNominee.movie" && item) {
+    const movie = rawValue;
+    const name = getNestedValue(item, "winnerNominee.name");
+    if (movie && movie !== "—") {
+      return (
+        <>
+          {movie}
+          {name && name !== "—" && (
+            <span className="ml-1 text-xs text-oscar-text-muted">({name})</span>
+          )}
+        </>
+      );
+    }
+    return name !== "—" ? name : rawValue;
   }
   if (col === "role") {
     const isAdmin = rawValue === "ADMIN";
@@ -365,7 +380,7 @@ export default function EntityPage({
               {items.map((item) => (
                 <tr key={item.id as string}>
                   {config.columns.map((col) => (
-                    <td key={col.key}>{renderCellValue(col.key, getNestedValue(item, col.key))}</td>
+                    <td key={col.key}>{renderCellValue(col.key, getNestedValue(item, col.key), item)}</td>
                   ))}
                   <td className="text-right space-x-3">
                     <button

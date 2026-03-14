@@ -183,7 +183,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
     ],
     columns: [
       { key: "category.name", label: "Categoria" },
-      { key: "winnerNominee.name", label: "Vencedor" },
+      { key: "winnerNominee.movie", label: "Vencedor" },
     ],
   },
 };
