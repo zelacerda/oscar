@@ -32,7 +32,11 @@ export default async function PoolPage({ params }: Props) {
 
   if (!isMember && !isAdmin) redirect("/");
 
-  const isLocked = pool.isLocked;
+  const globalSettings = await prisma.globalSettings.findUnique({
+    where: { id: "singleton" },
+  });
+
+  const isLocked = pool.isLocked || (globalSettings?.globalLock ?? false);
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6">

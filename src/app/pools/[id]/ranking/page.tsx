@@ -20,7 +20,12 @@ export default async function RankingPage({ params }: Props) {
 
   if (!pool) redirect("/");
 
-  if (!pool.isLocked) redirect(`/pools/${id}`);
+  const globalSettings = await prisma.globalSettings.findUnique({
+    where: { id: "singleton" },
+  });
+
+  const isLocked = pool.isLocked || (globalSettings?.globalLock ?? false);
+  if (!isLocked) redirect(`/pools/${id}`);
 
   const member = await prisma.poolMember.findFirst({
     where: { poolId: id, userId },

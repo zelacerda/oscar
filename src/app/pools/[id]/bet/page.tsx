@@ -28,7 +28,11 @@ export default async function BetPage({ params }: Props) {
 
   if (!pool) redirect("/");
 
-  if (pool.isLocked) redirect(`/pools/${id}`);
+  const globalSettings = await prisma.globalSettings.findUnique({
+    where: { id: "singleton" },
+  });
+
+  if (pool.isLocked || globalSettings?.globalLock) redirect(`/pools/${id}`);
 
   const member = await prisma.poolMember.findFirst({
     where: { poolId: id, userId },

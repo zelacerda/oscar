@@ -80,7 +80,12 @@ export default async function HomePage() {
                 href={`/pools/${pool.id}`}
                 className="gala-card block p-4"
               >
-                <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
+                <div className="flex items-center justify-between">
+                  <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
+                  <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${pool.isLocked ? "bg-red-900/40 text-red-300" : "bg-green-900/40 text-green-300"}`}>
+                    {pool.isLocked ? "Encerrado" : "Aberto"}
+                  </span>
+                </div>
                 <p className="mt-1 text-xs text-oscar-text-secondary">
                   {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   {pool.admin.name && <> &middot; por {pool.admin.name}</>}
@@ -102,7 +107,12 @@ export default async function HomePage() {
                   href={`/pools/${pool.id}`}
                   className="block transition-opacity hover:opacity-80"
                 >
-                  <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-semibold text-oscar-text-primary">{pool.name}</h3>
+                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${pool.isLocked ? "bg-red-900/40 text-red-300" : "bg-green-900/40 text-green-300"}`}>
+                      {pool.isLocked ? "Encerrado" : "Aberto"}
+                    </span>
+                  </div>
                   <p className="mt-1 text-xs text-oscar-text-secondary">
                     {pool._count.members} participante{pool._count.members !== 1 ? "s" : ""}
                   </p>

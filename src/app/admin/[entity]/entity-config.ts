@@ -56,23 +56,14 @@ export const entityConfigs: Record<string, EntityConfig> = {
   },
   pools: {
     name: "Bolões",
-    description: "Os bolões do Oscar! Cada bolão tem um dono e uma data limite pra apostar.",
+    description: "Os bolões do Oscar! Cada bolão tem um dono que controla quando as apostas fecham.",
     apiPath: "/api/pools",
     fields: [
       { name: "name", label: "Nome do Bolão", type: "text", required: true, helpText: "Dá um nome criativo pro bolão!" },
-      { name: "lockDate", label: "Fecha quando?", type: "datetime-local", required: true, helpText: "Depois dessa data ninguém mais consegue apostar" },
-      {
-        name: "adminId",
-        label: "Dono do Bolão",
-        type: "relation",
-        required: true,
-        helpText: "Quem manda nesse bolão",
-        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
-      },
     ],
     columns: [
       { key: "name", label: "Nome" },
-      { key: "lockDate", label: "Fecha em" },
+      { key: "isLocked", label: "Status" },
       { key: "admin.name", label: "Dono" },
     ],
   },
