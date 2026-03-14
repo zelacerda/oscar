@@ -60,6 +60,15 @@ export const entityConfigs: Record<string, EntityConfig> = {
     apiPath: "/api/pools",
     fields: [
       { name: "name", label: "Nome do Bolão", type: "text", required: true, helpText: "Dá um nome criativo pro bolão!" },
+      { name: "description", label: "Descrição", type: "text", helpText: "Uma descrição opcional pro bolão" },
+      {
+        name: "adminId",
+        label: "Dono",
+        type: "relation",
+        required: true,
+        helpText: "Quem administra esse bolão",
+        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
+      },
     ],
     columns: [
       { key: "name", label: "Nome" },
