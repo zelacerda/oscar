@@ -16,6 +16,7 @@ _Nenhuma track ativa no momento._
 
 ## Completed Tracks (Recent)
 
+- [x] [pool-invite-share_20260314 — Convites e Compartilhamento de Bolão](./tracks/pool-invite-share_20260314/index.md)
 - [x] [custom-pools_20260314 — Bolões Customizáveis e Controle de Votação](./tracks/custom-pools_20260314/index.md)
 - [x] [onboarding-content_20260314 — Conteúdo Explicativo e Onboarding](./tracks/onboarding-content_20260314/index.md)
 - [x] [gala-theme_20260314 — Visual Gala Preto e Dourado](./tracks/gala-theme_20260314/index.md)

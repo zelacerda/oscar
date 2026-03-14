@@ -25,4 +25,6 @@
 
 | [x] | custom-pools_20260314 | Bolões Customizáveis e Controle de Votação | 2026-03-14 | 2026-03-14 |
 
+| [x] | pool-invite-share_20260314 | Convites e Compartilhamento de Bolão | 2026-03-14 | 2026-03-14 |
+
 <!-- Tracks registered by /conductor:new-track -->
