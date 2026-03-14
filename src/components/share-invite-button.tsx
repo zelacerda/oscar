@@ -24,11 +24,10 @@ export default function ShareInviteButton({ inviteCode, poolName, poolDescriptio
 
   async function handleShare() {
     const text = buildMessage();
-    const url = `${window.location.origin}/invite/${inviteCode}`;
 
     if (canShare) {
       try {
-        await navigator.share({ title: poolName, text, url });
+        await navigator.share({ title: poolName, text });
       } catch (err) {
         // User cancelled share - ignore
         if ((err as DOMException).name !== "AbortError") {
