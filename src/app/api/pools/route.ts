@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
 
   const body: {
     name: string;
+    description?: string;
     categories: { categoryId: string; tier: string; points: number }[];
   } = await request.json();
 
@@ -35,6 +36,7 @@ export async function POST(request: NextRequest) {
     const pool = await prisma.pool.create({
       data: {
         name: body.name,
+        description: body.description || null,
         adminId: userId,
         categories: {
           create: body.categories.map((c) => ({

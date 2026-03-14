@@ -153,6 +153,7 @@ function TierBox({
 export default function CreatePoolForm({ categoriesByTier }: Props) {
   const router = useRouter();
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -298,7 +299,7 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
       const res = await fetch("/api/pools", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), categories }),
+        body: JSON.stringify({ name: name.trim(), description: description.trim() || undefined, categories }),
       });
 
       const data = await res.json();
@@ -326,6 +327,17 @@ export default function CreatePoolForm({ categoriesByTier }: Props) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Ex: Bolão da Família"
+          className="w-full rounded-md border border-oscar-border bg-oscar-charcoal px-3 py-2 text-sm text-oscar-text-primary placeholder:text-oscar-text-muted focus:border-oscar-gold focus:outline-none"
+        />
+        <label className="mb-2 mt-4 block text-sm font-semibold text-oscar-text-primary">
+          Descrição <span className="font-normal text-oscar-text-muted">(opcional)</span>
+        </label>
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Ex: Quem acerta mais categorias leva um prêmio!"
+          maxLength={200}
           className="w-full rounded-md border border-oscar-border bg-oscar-charcoal px-3 py-2 text-sm text-oscar-text-primary placeholder:text-oscar-text-muted focus:border-oscar-gold focus:outline-none"
         />
       </div>

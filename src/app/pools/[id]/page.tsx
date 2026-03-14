@@ -48,6 +48,9 @@ export default async function PoolPage({ params }: Props) {
 
       <div className="gala-card mb-6 p-6">
         <h1 className="gold-gradient-text text-2xl font-bold">{pool.name}</h1>
+        {pool.description && (
+          <p className="mt-1 text-sm text-oscar-text-secondary">{pool.description}</p>
+        )}
         <p className="mt-1 text-sm text-oscar-text-secondary">
           Criado por {pool.admin.name}
           {" "}&middot;{" "}

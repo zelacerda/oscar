@@ -30,6 +30,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
     where: { id },
     data: {
       name: body.name,
+      description: body.description !== undefined ? (body.description || null) : undefined,
       adminId: body.adminId,
     },
   });
