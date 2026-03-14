@@ -57,11 +57,34 @@ export default async function HomePage() {
         </p>
       </div>
 
+      {/* Como funciona */}
+      {hasNoPools && (
+        <section className="mb-8">
+          <h2 className="admin-heading mb-4 text-lg">Como funciona</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { step: "1", title: "Crie um bolão", desc: "ou entre em um com o código de convite" },
+              { step: "2", title: "Chame a galera", desc: "compartilhe o link e monte o grupo" },
+              { step: "3", title: "Faça seus palpites", desc: "escolha os vencedores de cada categoria" },
+              { step: "4", title: "Acompanhe o ranking", desc: "veja quem manja mais de cinema" },
+            ].map((item) => (
+              <div key={item.step} className="gala-card flex items-start gap-3 p-4">
+                <span className="gold-gradient-text text-xl font-bold leading-none">{item.step}</span>
+                <div>
+                  <p className="text-sm font-semibold text-oscar-text-primary">{item.title}</p>
+                  <p className="text-xs text-oscar-text-muted">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Estado vazio */}
       {hasNoPools && (
         <div className="gala-card p-8 text-center">
           <p className="text-oscar-text-secondary">
-            Você ainda não participa de nenhum bolão.
+            Você ainda não participa de nenhum bolão. Bora começar?
           </p>
           <Link href="/pools/new" className="admin-btn-primary mt-4 inline-block">
             Criar Novo Bolão

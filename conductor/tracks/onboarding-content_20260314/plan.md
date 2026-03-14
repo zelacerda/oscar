@@ -30,9 +30,9 @@ Adicionar seção "como funciona" ou orientações contextuais na home para novo
 
 ### Tasks
 
-- [ ] Task 2.1: Adicionar seção "Como funciona" com 3-4 passos curtos (criar bolão, convidar amigos, fazer palpites, acompanhar ranking)
-- [ ] Task 2.2: Estilizar a seção usando componentes visuais do tema gala (gala-card, gold-text, etc.)
-- [ ] Task 2.3: Garantir que a seção não polui a tela para usuários que já têm bolões (posicionar adequadamente)
+- [x] Task 2.1: Adicionar seção "Como funciona" com 3-4 passos curtos (criar bolão, convidar amigos, fazer palpites, acompanhar ranking)
+- [x] Task 2.2: Estilizar a seção usando componentes visuais do tema gala (gala-card, gold-text, etc.)
+- [x] Task 2.3: Garantir que a seção não polui a tela para usuários que já têm bolões (posicionar adequadamente)
 
 ### Verification
 
