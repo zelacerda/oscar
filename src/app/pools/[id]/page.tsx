@@ -39,6 +39,7 @@ export default async function PoolPage({ params }: Props) {
   });
 
   const isLocked = pool.isLocked || (globalSettings?.globalLock ?? false);
+  const isFinalized = globalSettings?.isFinalized ?? false;
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
@@ -67,7 +68,7 @@ export default async function PoolPage({ params }: Props) {
           )}
           {isLocked && (
             <Link href={`/pools/${id}/ranking`} className="admin-btn-primary">
-              Ver Ranking
+              {isFinalized ? "Ver Resultado" : "Ver Ranking"}
             </Link>
           )}
           {isAdmin && (

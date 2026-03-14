@@ -72,7 +72,7 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
 
   useEffect(() => {
     fetchRanking();
-    const interval = setInterval(fetchRanking, 60_000);
+    const interval = setInterval(fetchRanking, 15_000);
     return () => clearInterval(interval);
   }, [fetchRanking]);
 
@@ -203,7 +203,7 @@ export default function RankingTable({ poolId, currentUserId }: Props) {
           <p className="px-4 py-2 text-right text-xs text-oscar-text-muted">
             {isFinalized
               ? "Resultado final"
-              : `Atualizado às ${lastUpdated.toLocaleTimeString("pt-BR")} · atualiza a cada 60s`}
+              : `Atualizado às ${lastUpdated.toLocaleTimeString("pt-BR")} · atualiza a cada 15s`}
           </p>
         )}
       </div>
