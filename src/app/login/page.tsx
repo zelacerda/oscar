@@ -4,7 +4,7 @@ import logo from "@/assets/logo.png";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-start justify-center bg-oscar-black px-4 pt-16">
+    <div className="flex min-h-screen items-center justify-center bg-oscar-black px-4">
       <div className="w-full max-w-sm text-center">
         <Image
           src={logo}
@@ -13,7 +13,7 @@ export default function LoginPage() {
           priority
         />
       <div className="gala-card w-full p-8 text-center">
-        <h1 className="gold-gradient-text mb-1 font-futura text-4xl font-bold tracking-tight">Bolão do Oscar 2026</h1>
+        <h1 className="gold-gradient-text mb-1 font-futura text-4xl font-bold tracking-tight">Bolão do<br />Oscar 2026</h1>
         <p className="gold-text mb-6 text-sm font-medium">
           O bolão mais glamouroso entre amigos
         </p>

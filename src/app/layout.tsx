@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./providers";
 import Link from "next/link";
 import UserMenu from "@/components/user-menu";
+import { auth } from "@/lib/auth";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,21 +21,26 @@ export const metadata: Metadata = {
   description: "Bolões do Oscar entre amigos",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  const isLoggedIn = !!session?.user;
+
   return (
     <html lang="pt-BR">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
-            <Link href="/" className="gold-gradient-text text-lg font-bold tracking-tight">Bolão do Oscar 2026</Link>
-            <UserMenu />
-          </header>
+          {isLoggedIn && (
+            <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
+              <Link href="/" className="gold-gradient-text font-futura text-lg font-bold tracking-tight">Bolão do Oscar</Link>
+              <UserMenu />
+            </header>
+          )}
           {children}
         </Providers>
       </body>
