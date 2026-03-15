@@ -63,7 +63,7 @@ export default async function InvitePage({ params, searchParams }: Props) {
           <p className="mb-2 text-xs font-medium uppercase tracking-wider text-oscar-text-secondary">
             Você foi convidado para
           </p>
-          <h1 className="gold-gradient-text mb-1 font-futura text-2xl font-bold tracking-tight">
+          <h1 className="gold-shimmer-text mb-1 font-futura text-2xl font-bold tracking-tight">
             {pool.name}
           </h1>
           {pool.description && (
