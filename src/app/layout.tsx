@@ -37,10 +37,10 @@ export default async function RootLayout({
       >
         <Providers>
           {isLoggedIn && (
-            <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
-              <Link href="/" className="flex items-center gap-2 gold-shimmer-text font-futura text-lg font-bold tracking-tight">
+            <header className="sticky top-0 z-50 flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
+              <Link href="/" className="flex items-center gap-2 gold-shimmer-text font-futura text-xl font-bold tracking-tight">
                 <Image src="/favicon.ico" alt="" width={20} height={20} className="inline-block" />
-                Bolão do Oscar
+                Bolão do Oscar 2026
               </Link>
               <UserMenu />
             </header>
