@@ -7,7 +7,10 @@ export async function GET() {
   if (error) return error;
 
   const pools = await prisma.pool.findMany({
-    include: { admin: { select: { id: true, name: true } } },
+    include: {
+      admin: { select: { id: true, name: true } },
+      _count: { select: { members: true } },
+    },
     orderBy: { createdAt: "desc" },
   });
   return NextResponse.json(pools);

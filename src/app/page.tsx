@@ -162,6 +162,13 @@ export default async function HomePage() {
           </Link>
         </div>
       )}
+
+      {/* Aviso sobre apostas */}
+      <p className="mt-6 text-center text-xs text-oscar-text-secondary">
+        Este bolão é apenas por diversão e não envolve dinheiro. Se o seu grupo de
+        amigos quiser fazer uma vaquinha por fora, fique à vontade — use o site
+        pra controlar quem acertou mais!
+      </p>
     </main>
   );
 }

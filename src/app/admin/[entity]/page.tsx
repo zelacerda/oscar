@@ -188,6 +188,22 @@ function FormModal({ fields, initialData, onSubmit, onClose, title }: FormModalP
   }
 
   function renderField(field: FieldConfig) {
+    const isEditing = !!initialData;
+    const isReadOnly = isEditing && field.readOnlyOnEdit;
+
+    if (isReadOnly && field.type === "relation") {
+      const options = relationOptions[field.name] ?? [];
+      const selected = options.find((o) => o.value === formData[field.name]);
+      return (
+        <input
+          type="text"
+          value={selected?.label ?? formData[field.name]}
+          className="admin-input bg-oscar-bg-secondary text-oscar-text-muted cursor-not-allowed"
+          disabled
+        />
+      );
+    }
+
     if (field.type === "select") {
       return (
         <select

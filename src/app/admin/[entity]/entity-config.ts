@@ -4,6 +4,7 @@ export type FieldConfig = {
   type: "text" | "email" | "number" | "select" | "datetime-local" | "relation";
   options?: { value: string; label: string }[];
   required?: boolean;
+  readOnlyOnEdit?: boolean;
   helpText?: string;
   dependsOn?: {
     field: string;
@@ -74,6 +75,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
       { key: "name", label: "Nome" },
       { key: "isLocked", label: "Status" },
       { key: "admin.name", label: "Dono" },
+      { key: "_count.members", label: "Membros" },
     ],
   },
   "pool-members": {
@@ -82,20 +84,21 @@ export const entityConfigs: Record<string, EntityConfig> = {
     apiPath: "/api/pool-members",
     fields: [
       {
+        name: "userId",
+        label: "Participante",
+        type: "relation",
+        required: true,
+        readOnlyOnEdit: true,
+        helpText: "Quem vai entrar no bolão",
+        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
+      },
+      {
         name: "poolId",
         label: "Bolão",
         type: "relation",
         required: true,
         helpText: "Escolhe o bolão",
         relation: { apiPath: "/api/pools", labelField: "name" },
-      },
-      {
-        name: "userId",
-        label: "Participante",
-        type: "relation",
-        required: true,
-        helpText: "Quem vai entrar no bolão",
-        relation: { apiPath: "/api/users", labelField: ["name", "email"] },
       },
     ],
     columns: [
@@ -139,6 +142,7 @@ export const entityConfigs: Record<string, EntityConfig> = {
         label: "Quem apostou",
         type: "relation",
         required: true,
+        readOnlyOnEdit: true,
         helpText: "Membro do bolão que tá fazendo a aposta",
         relation: { apiPath: "/api/pool-members", labelField: ["user.name", "pool.name"] },
       },
