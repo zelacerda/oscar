@@ -200,6 +200,27 @@ body {
   background-clip: text;
 }
 
+.gold-shimmer-text {
+  background: linear-gradient(
+    105deg,
+    var(--oscar-gold-dark),
+    var(--oscar-gold-light) 30%,
+    #fff8dc 50%,
+    var(--oscar-gold-light) 70%,
+    var(--oscar-gold-dark)
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 20s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 100% 0; }
+  50% { background-position: -100% 0; }
+}
+
 .gold-gradient-bg {
   background: linear-gradient(135deg, var(--oscar-gold), var(--oscar-gold-dark));
 }

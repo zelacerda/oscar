@@ -13,7 +13,7 @@ export default function LoginPage() {
           priority
         />
       <div className="gala-card w-full p-8 text-center">
-        <h1 className="gold-gradient-text mb-1 font-futura text-4xl font-bold tracking-tight">Bolão do<br />Oscar 2026</h1>
+        <h1 className="gold-shimmer-text mb-1 font-futura text-4xl font-bold tracking-tight">Bolão do<br />Oscar 2026</h1>
         <p className="gold-text mb-6 text-sm font-medium">
           O bolão mais glamouroso entre amigos
         </p>

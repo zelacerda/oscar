@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./providers";
 import Link from "next/link";
+import Image from "next/image";
 import UserMenu from "@/components/user-menu";
 import { auth } from "@/lib/auth";
 import "./globals.css";
@@ -37,7 +38,10 @@ export default async function RootLayout({
         <Providers>
           {isLoggedIn && (
             <header className="flex items-center justify-between border-b border-oscar-border-gold bg-oscar-charcoal px-6 py-3">
-              <Link href="/" className="gold-gradient-text font-futura text-lg font-bold tracking-tight">Bolão do Oscar</Link>
+              <Link href="/" className="flex items-center gap-2 gold-shimmer-text font-futura text-lg font-bold tracking-tight">
+                <Image src="/favicon.ico" alt="" width={20} height={20} className="inline-block" />
+                Bolão do Oscar
+              </Link>
               <UserMenu />
             </header>
           )}
